@@ -1,17 +1,15 @@
 import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface WideContainerProps {
   classNames?: string;
   children?: ReactNode;
-  ultraWide?: boolean;
 }
 
 export function WideContainer(props: WideContainerProps) {
   return (
     <div
-      className={`mx-auto max-w-full px-8 ${
-        props.ultraWide ? "w-[1300px] sm:px-16" : "w-[900px] sm:px-8"
-      } ${props.classNames || ""}`}
+      className={cn(`mx-[100px]  px-8 max-w-[calc(100vw-256px)]`, props.classNames)}
     >
       {props.children}
     </div>

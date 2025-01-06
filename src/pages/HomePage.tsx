@@ -81,7 +81,7 @@ export function HomePage() {
               <div className="flex flex-col items-center justify-center">
                 <p className="text-[18.5px] pb-3">{emptyText}</p>
                 <Button
-                  className="px-py p-[0.35em] mt-3 rounded-xl text-type-dimmed box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
+                  className="px-py p-[0.35em] mt-3 rounded-xl box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
                   onClick={() => handleClick("/discover")}
                 >
                   {t("home.search.discover")}

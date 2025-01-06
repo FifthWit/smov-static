@@ -11,7 +11,6 @@ import { BlurEllipsis } from "@/pages/layouts/SubPageLayout";
 import { conf } from "@/setup/config";
 import { useBannerSize } from "@/stores/banner";
 
-import { BrandPill } from "./BrandPill";
 
 export interface NavigationProps {
   bg?: boolean;
@@ -39,15 +38,12 @@ export function Navigation(props: NavigationProps) {
             top: `${bannerHeight}px`,
           }}
         >
-          <div className="absolute inset-x-0 -mt-[22%] flex items-center sm:mt-0">
-            <Lightbar />
-          </div>
         </div>
       ) : null}
 
       {/* backgrounds - these are seperate because of z-index issues */}
       <div
-        className="fixed z-[20] pointer-events-none left-0 right-0 top-0 min-h-[150px]"
+        className="fixed z-5 pointer-events-none left-0 right-0 top-0 min-h-[150px]"
         style={{
           top: `${bannerHeight}px`,
         }}
@@ -78,45 +74,13 @@ export function Navigation(props: NavigationProps) {
 
       {/* content */}
       <div
-        className="fixed pointer-events-none left-0 right-0 z-[60] top-0 min-h-[150px]"
+        className="fixed pointer-events-none left-0 right-0 z-[5] top-0 min-h-[150px]"
         style={{
           top: `${bannerHeight}px`,
         }}
       >
         <div className={classNames("fixed left-0 right-0 flex items-center")}>
-          <div className="px-7 py-5 relative z-[60] flex flex-1 items-center justify-between">
-            <div className="flex items-center space-x-1.5 ssm:space-x-3 pointer-events-auto">
-              <Link
-                className="block tabbable rounded-full text-xs ssm:text-base"
-                to="/"
-                onClick={() => window.scrollTo(0, 0)}
-              >
-                <BrandPill clickable header />
-              </Link>
-              <a
-                href={conf().DISCORD_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xl text-white tabbable rounded-full"
-              >
-                <IconPatch icon={Icons.DISCORD} clickable downsized />
-              </a>
-              <a
-                href={conf().GITHUB_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xl text-white tabbable rounded-full"
-              >
-                <IconPatch icon={Icons.GITHUB} clickable downsized />
-              </a>
-              <a
-                onClick={() => handleClick("/discover")}
-                rel="noreferrer"
-                className="text-xl text-white tabbable rounded-full"
-              >
-                <IconPatch icon={Icons.RISING_STAR} clickable downsized />
-              </a>
-            </div>
+          <div className="px-7 py-5 relative z-[60] flex flex-1 items-center justify-end">
             <div className="relative pointer-events-auto">
               <LinksDropdown>
                 {loggedIn ? <UserAvatar withName /> : <NoUserAvatar />}

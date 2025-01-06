@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import { Icon, Icons } from "@/components/Icon";
 
@@ -8,6 +9,7 @@ export function BackLink(props: { url: string }) {
 
   return (
     <div className="flex items-center">
+    <SidebarTrigger className="mr-4" />
       <Link
         to={props.url}
         className="py-1 -my-1 px-2 -mx-2 tabbable rounded-lg flex items-center cursor-pointer text-type-secondary hover:text-white transition-colors duration-200 font-medium"

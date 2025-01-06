@@ -7,7 +7,7 @@ export function HomeLayout(props: {
 }) {
   return (
     <FooterView>
-      <Navigation bg={props.showBg} />
+      {/* <Navigation bg={props.showBg} /> */}
       {props.children}
     </FooterView>
   );

@@ -17,7 +17,7 @@ export function NotFoundPart() {
       <Helmet>
         <title>{t("notFound.badge")}</title>
       </Helmet>
-      <Navigation />
+      {/* <Navigation /> */}
       <div className="flex h-full flex-1 flex-col items-center justify-center p-5 text-center">
         <ErrorLayout>
           <ErrorContainer>

@@ -54,6 +54,7 @@ export function WatchingPart({
       <SectionHeading
         title={t("home.continueWatching.sectionTitle")}
         icon={Icons.CLOCK}
+        className="text-muted-foreground"
       >
         <EditButton editing={editing} onEdit={setEditing} />
       </SectionHeading>

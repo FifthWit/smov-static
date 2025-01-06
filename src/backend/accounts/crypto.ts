@@ -4,6 +4,8 @@ import { generateMnemonic, validateMnemonic } from "@scure/bip39";
 import { wordlist } from "@scure/bip39/wordlists/english";
 import forge from "node-forge";
 
+/* eslint-disable */
+
 type Keys = {
   privateKey: Uint8Array;
   publicKey: Uint8Array;

@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { useMemo } from "react";
 
+import { cn } from "@/lib/utils";
 import { base64ToBuffer, decryptData } from "@/backend/accounts/crypto";
 import { Icon, Icons } from "@/components/Icon";
 import { UserIcon } from "@/components/UserIcon";
@@ -12,40 +13,44 @@ export interface AvatarProps {
   sizeClass?: string;
   iconClass?: string;
   bottom?: React.ReactNode;
+  className?: string;
 }
 
-export function Avatar(props: AvatarProps) {
+export function Avatar({className, profile, sizeClass, iconClass, bottom}: AvatarProps) {
   return (
-    <div className="relative inline-block">
+    <div className={cn("relative inline-block", className)}>
       <div
         className={classNames(
-          props.sizeClass,
+          sizeClass,
           "rounded-full overflow-hidden flex items-center justify-center text-white",
         )}
         style={{
-          background: `linear-gradient(to bottom right, ${props.profile.colorA}, ${props.profile.colorB})`,
+          background: `linear-gradient(to bottom right, ${profile.colorA}, ${profile.colorB})`,
         }}
       >
         <UserIcon
-          className={props.iconClass}
-          icon={props.profile.icon as any}
+          className={iconClass}
+          icon={profile.icon as any}
         />
       </div>
-      {props.bottom ? (
+      {bottom ? (
         <div className="absolute bottom-0 left-1/2 transform translate-y-1/2 -translate-x-1/2">
-          {props.bottom}
+          {bottom}
         </div>
       ) : null}
     </div>
   );
 }
 
-export function UserAvatar(props: {
-  sizeClass?: string;
-  iconClass?: string;
-  bottom?: React.ReactNode;
-  withName?: boolean;
-}) {
+interface UserAvatarProps {
+    sizeClass?: string;
+    iconClass?: string;
+    bottom?: React.ReactNode;
+    withName?: boolean;
+    className?: string;
+}
+
+export function UserAvatar({ sizeClass, iconClass, bottom, withName, className}: UserAvatarProps) {
   const auth = useAuthStore();
 
   const bufferSeed = useMemo(
@@ -63,23 +68,23 @@ export function UserAvatar(props: {
     : "...";
 
   return (
-    <>
+    <div className={cn("flex items-center *:m-1", className)}>
       <Avatar
         profile={auth.account.profile}
         sizeClass={
-          props.sizeClass ?? "w-[1.5rem] h-[1.5rem] ssm:w-[2rem] ssm:h-[2rem]"
+          sizeClass ?? "w-[1.5rem] h-[1.5rem] ssm:w-[2rem] ssm:h-[2rem]"
         }
-        iconClass={props.iconClass}
-        bottom={props.bottom}
+        iconClass={iconClass}
+        bottom={bottom}
       />
-      {props.withName && bufferSeed ? (
-        <span className="hidden md:inline-block">
+      {withName && bufferSeed ? (
+        <span className="hidden md:inline-block font-semibold text-lg">
           {deviceName.length >= 20
             ? `${deviceName.slice(0, 20 - 1)}…`
             : deviceName}
         </span>
       ) : null}
-    </>
+    </div>
   );
 }
 
