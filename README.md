@@ -1,5 +1,7 @@
-# Sudo-Flix
+# Sudo-Fork
 [![Sudo-Flix Image](.github/Sudo-Flix.png)](https://docs.undi.rest)  
+
+**This is a fork of Sudo-Flix in no way am I taking credit for what they've worked to make, I primarily want to explore with the UI and see where it takes me**
 
 **I *do not* endorse piracy of any kind I simply enjoy programming and large user counts.**
 

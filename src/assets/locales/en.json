@@ -98,7 +98,7 @@
       "github": "GitHub",
       "twitter": "Twitter"
     },
-    "tagline": "Watch your favorite shows and movies for free with no ads ever! (っ'ヮ'c)"
+    "tagline": "Sudo-Fork is a fork of Sudo-Flix, and I dont want to go through the effort of changing sudo-flix to sudo fork on everything so, this will be where I do it."
   },
   "global": {
     "name": "sudo-flix",
