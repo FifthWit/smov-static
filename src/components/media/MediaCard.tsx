@@ -113,7 +113,7 @@ function MediaCardContent({
               <p
                 className={[
                   "text-center text-xs font-bold text-mediaCard-badgeText transition-colors",
-                  closable ? "" : "group-hover:text-white",
+                  closable ? "" : "group-hover:text-foreground",
                 ].join(" ")}
               >
                 {t("media.episodeDisplay", {
@@ -132,14 +132,14 @@ function MediaCardContent({
                 }`}
               />
               <div
-                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-mediaCard-shadow to-transparent transition-colors ${
-                  canLink ? "group-hover:from-mediaCard-hoverShadow" : ""
+                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/70 to-transparent transition-colors ${
+                  canLink ? "group-hover:from-background/70" : ""
                 }`}
               />
               <div className="absolute inset-x-0 bottom-0 p-3">
-                <div className="relative h-1 overflow-hidden rounded-full bg-mediaCard-barColor">
+                <div className="relative h-1 overflow-hidden rounded-full bg-primary/25">
                   <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-mediaCard-barFillColor"
+                    className="absolute inset-y-0 left-0 rounded-full bg-primary"
                     style={{
                       width: percentageString,
                     }}
@@ -177,7 +177,7 @@ function MediaCardContent({
             />
           </div>
         </div>
-        <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-white">
+        <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-foreground">
           <span>{media.title}</span>
         </h1>
         <DotList className="text-xs" content={dotListContent} />
