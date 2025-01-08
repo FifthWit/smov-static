@@ -107,12 +107,12 @@ function MediaCardContent({
           {series ? (
             <div
               className={[
-                "absolute right-2 top-2 rounded-md bg-mediaCard-badge px-2 py-1 transition-colors",
+                "absolute right-2 top-2 rounded-md bg-background/95 text-muted-foreground px-2 py-1 transition-colors",
               ].join(" ")}
             >
               <p
                 className={[
-                  "text-center text-xs font-bold text-mediaCard-badgeText transition-colors",
+                  "text-center text-xs font-bold text-muted-foreground transition-colors",
                   closable ? "" : "group-hover:text-foreground",
                 ].join(" ")}
               >
