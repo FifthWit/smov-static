@@ -2,12 +2,6 @@ import { forwardRef, useState, useEffect } from "react";
 
 import { Input } from "@/components/ui/input"
 
-import { Flare } from "@/components/utils/Flare";
-
-import { Icon, Icons } from "../Icon";
-import { TextInputControl } from "../text-inputs/TextInputControl";
-import { cn } from "@/lib/utils";
-
 export interface SearchBarProps {
   placeholder?: string;
   onChange: (value: string, force: boolean) => void;
@@ -28,7 +22,7 @@ export const SearchBarInput = forwardRef<HTMLInputElement, SearchBarProps>(
     }, [focused, props.value]);
 
     return (
-        <div className="group">
+        <div className="group relative">
           <div
             className="absolute transition-all duration-300 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"
           ></div>

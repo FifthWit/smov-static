@@ -67,13 +67,6 @@ export function HeroPart({ setIsSticky, searchParams }: HeroPartProps) {
           <HeroTitle className="mx-auto max-w-md">{title}</HeroTitle>
         </div>
         <div className="relative h-20 z-1">
-          <Sticky
-            topOffset={stickyOffset * -1 + bannerSize}
-            stickyStyle={{
-              paddingTop: `${stickyOffset + bannerSize}px`,
-            }}
-            onFixedToggle={stickStateChanged}
-          >
             <SearchBarInput
               ref={inputRef}
               onChange={setSearch}
@@ -81,7 +74,6 @@ export function HeroPart({ setIsSticky, searchParams }: HeroPartProps) {
               onUnFocus={setSearchUnFocus}
               placeholder={placeholder ?? ""}
             />
-          </Sticky>
         </div>
       </div>
     </ThinContainer>
