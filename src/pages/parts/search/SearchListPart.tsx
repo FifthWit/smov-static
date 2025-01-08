@@ -85,7 +85,7 @@ export function SearchListPart({ searchQuery }: { searchQuery: string }) {
             title={t("home.search.sectionTitle")}
             icon={Icons.SEARCH}
           />
-          <MediaGrid>
+          <MediaGrid className="relative z-10">
             {results.map((v) => (
               <WatchedMediaCard key={v.id.toString()} media={v} />
             ))}
