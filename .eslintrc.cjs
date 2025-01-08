@@ -8,7 +8,8 @@ module.exports = {
     },
     rules: {
         "no-console": "off",
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off",
+        "no-undef": "off",
         "@typescript-eslint/explicit-function-return-type": "off",
         "import/no-unresolved": "off",
         "prettier/prettier": ["warn"],

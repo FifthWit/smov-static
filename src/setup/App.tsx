@@ -9,6 +9,7 @@ import {
   useParams,
 } from "react-router-dom";
 
+import clsx from "clsx";
 import { convertLegacyUrl, isLegacyUrl } from "@/backend/metadata/getmeta";
 import { generateQuickSearchMediaUrl } from "@/backend/metadata/tmdb";
 import { useOnlineListener } from "@/hooks/usePing";
@@ -111,7 +112,7 @@ function App() {
   return (
     <SidebarProvider defaultOpen={getCookieAsBoolean("sidebar:state")}>
         <AppSidebar />
-            <SidebarInset className="bg-gradient-to-b from-primary/25 to-background to-[550px]">
+            <SidebarInset className={clsx({ "bg-gradient-to-b from-primary/25 to-background to-[550px]": !window.location.pathname.includes("/media/tmdb-") })}>
             {window.location.pathname.includes("/media/") ? null : (<SidebarTrigger className="z-[10] m-3 aspect-square scale-150" />)}
             <Layout>
                 <LanguageProvider />

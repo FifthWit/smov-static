@@ -60,7 +60,7 @@ export function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="mt-16 border-t border-type-divider py-16 md:py-8">
+    <footer className="mt-16 border-t border-accent/50 py-16 md:py-8">
       <WideContainer classNames="grid md:grid-cols-2 gap-16 md:gap-8">
         <div>
           <div className="inline-block">
