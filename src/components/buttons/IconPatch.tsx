@@ -12,20 +12,20 @@ export interface IconPatchProps {
 
 export function IconPatch(props: IconPatchProps) {
   const clickableClasses = props.clickable
-    ? "cursor-pointer hover:scale-110 hover:bg-pill-backgroundHover hover:text-white active:scale-125"
+    ? "cursor-pointer hover:scale-110 hover:bg-background hover:text-white active:scale-125"
     : "";
   const transparentClasses = props.transparent
     ? "bg-opacity-0 hover:bg-opacity-50"
     : "";
   const activeClasses = props.active
-    ? "bg-pill-backgroundHover text-white"
+    ? "bg-background/50 text-white"
     : "";
   const sizeClasses = props.downsized ? "h-10 w-10" : "h-12 w-12";
 
   return (
     <div className={props.className || undefined} onClick={props.onClick}>
       <div
-        className={`flex items-center justify-center rounded-full border-2 border-transparent bg-pill-background bg-opacity-100 transition-[background-color,color,transform,border-color] duration-75 ${transparentClasses} ${clickableClasses} ${activeClasses} ${sizeClasses}`}
+        className={`flex items-center justify-center rounded-full border-2 border-transparent bg-background/90 bg-opacity-100 transition-[background-color,color,transform,border-color] duration-75 ${transparentClasses} ${clickableClasses} ${activeClasses} ${sizeClasses}`}
       >
         <Icon icon={props.icon} />
       </div>
