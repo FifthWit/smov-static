@@ -28,29 +28,10 @@ export const SearchBarInput = forwardRef<HTMLInputElement, SearchBarProps>(
     }, [focused, props.value]);
 
     return (
-      <Flare.Base
-        className={cn({
-          "z-[1] hover:flare-enabled group flex flex-col rounded-[28px] transition-colors sm:flex-row sm:items-center relative":
-            true,
-          "bg-input": !focused,
-          "bg-input/80": focused,
-        })}
-      >
-        <Flare.Light
-          flareSize={400}
-          enabled={focused}
-          className="rounded-[28px]"
-          backgroundClass={cn({
-            "transition-colors": true,
-            "bg-input/85": !focused,
-            "bg-search-focused": focused,
-          })}
-        />
-        <Flare.Child className="flex flex-row items-center w-full">
-          <div className="ml-6 mr-0 text-accent/60">
-            <Icon icon={Icons.SEARCH} />
-          </div>
-
+        <div className="group">
+          <div
+            className="absolute transition-all duration-300 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"
+          ></div>
           <Input
             ref={ref}
             onFocus={() => setFocused(true)}
@@ -60,12 +41,10 @@ export const SearchBarInput = forwardRef<HTMLInputElement, SearchBarProps>(
             }}
             onChange={(e) => setSearch(e.target.value)}
             value={props.value}
-            // className="w-full flex-1 bg-transparent px-4 py-4 pl-12 text-search-text placeholder-search-placeholder focus:outline-none sm:py-4 sm:pr-2"
-            className="bg-transparent p-7 border-0 focus-visible:outline-none focus-visible:shadow-none"
+            className="relative p-7 border focus-visible:outline-none focus-visible:shadow-none rounded-2xl"
             placeholder={props.placeholder}
           />
-        </Flare.Child>
-      </Flare.Base>
+        </div>
     );
   },
 );
