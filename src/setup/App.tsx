@@ -111,7 +111,7 @@ function App() {
   return (
     <SidebarProvider defaultOpen={getCookieAsBoolean("sidebar:state")}>
         <AppSidebar />
-            <SidebarInset>
+            <SidebarInset className="bg-gradient-to-b from-primary/25 to-background to-[550px]">
             {window.location.pathname.includes("/media/") ? null : (<SidebarTrigger className="z-[10] m-3 aspect-square scale-150" />)}
             <Layout>
                 <LanguageProvider />
