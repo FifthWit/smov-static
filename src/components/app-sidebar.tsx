@@ -36,9 +36,8 @@ import {
 import { shouldShowProgress } from "@/stores/progress/utils";
 import { MediaItem } from "@/utils/mediaTypes";
 import { mediaItemToId } from "@/backend/metadata/tmdb";
-import { useBookmarkStore, BookmarkMediaItem } from "@/stores/bookmarks";
-import { useProgressStore, ProgressItem } from "@/stores/progress";
-import { LinksDropdown } from "@/components/LinksDropdown";
+import { useBookmarkStore } from "@/stores/bookmarks";
+import { useProgressStore } from "@/stores/progress";
 import { NoUserAvatar, UserAvatar } from "@/components/Avatar";
 import { useAuth } from "@/hooks/auth/useAuth"
 import { Link } from "react-router-dom"
@@ -62,9 +61,9 @@ export function AppSidebar() {
     let subGroups: subGroups[] = []
     
     const progressItems = useProgressStore((s) => s.items);
-    subGroups.push({title: "Continue Watching", icon: <Play />, media: []});
+    subGroups.push({title: "CONTINUE WATCHING", icon: <Play />, media: []});
     const bookmarkItems = useBookmarkStore((s) => s.bookmarks);
-    subGroups.push({title: "Bookmarks", icon: <BookmarkCheck />, media: []});
+    subGroups.push({title: "BOOKMARKS", icon: <BookmarkCheck />, media: []});
 
 
     let watchedMedia: MediaItem[] = [];
@@ -116,7 +115,7 @@ export function AppSidebar() {
     ]
 
     return (
-        <Sidebar>
+        <Sidebar className="border-sidebar-border">
             <SidebarHeader>
                 <SidebarMenuButton size="lg" asChild className="text-2xl font-bold">
                     <Link to="/">
@@ -140,8 +139,8 @@ export function AppSidebar() {
                                     <Collapsible defaultOpen className="group/collapsible" key={group.title}>
                                         <SidebarMenuItem>
                                             <CollapsibleTrigger asChild>
-                                                <SidebarMenuButton>
-                                                    {group.icon}
+                                                <SidebarMenuButton className="font-semibold text-muted-foreground">
+                                                    <span className="text-muted-foreground">{group.icon}</span>
                                                     {group.title}
                                                     <ChevronUp className="ml-auto group-data-[state=open]/collapsible:rotate-180 duration-200 transition-all" />
                                                 </SidebarMenuButton>
@@ -151,10 +150,10 @@ export function AppSidebar() {
                                                     <SidebarMenuSub>
                                                         {group.media.map((media) => (
                                                             <SidebarMenuSubItem key={media.title} className="">
-                                                                <SidebarMenuSubButton asChild className="py-4">
-                                                                    <Link to={`/media/${encodeURIComponent(mediaItemToId(media))}`} className="flex items-center justify-between">
-                                                                        {media.title}
-                                                                        {media.type === "movie" ? <Film /> : <MonitorPlay />}
+                                                                <SidebarMenuSubButton asChild className="px-2 items-center min-h-7 h-fit py-2">
+                                                                    <Link to={`/media/${encodeURIComponent(mediaItemToId(media))}`} className="flex-row items-center">
+                                                                        <span className="text-muted-foreground">{media.type === "movie" ? <Film /> : <MonitorPlay />}</span>
+                                                                        <span className="truncate">{media.title}</span>
                                                                     </Link>
                                                                 </SidebarMenuSubButton>
                                                             </SidebarMenuSubItem>
@@ -175,8 +174,8 @@ export function AppSidebar() {
             <SidebarFooter>
                 <SidebarMenu className="*:mt-1">
                     {footerItems.map((item) => (
-                        <SidebarMenuButton asChild isActive={window.location.pathname === item.link} className="transition-all duration-300 bg-accent/30">
-                            <Link to={item.link}>{item.icon} {item.title}</Link>
+                        <SidebarMenuButton asChild isActive={window.location.pathname === item.link} className="transition-all duration-300 bg-accent/30 text-muted-foreground">
+                            <Link to={item.link}>{item.icon} <span className="text-sidebar-foreground">{item.title}</span></Link>
                         </SidebarMenuButton>
                     ))}
                     {loggedIn ? <UserAvatar withName className="bg-accent/30 rounded-lg p-2" /> : <NoUserAvatar />}

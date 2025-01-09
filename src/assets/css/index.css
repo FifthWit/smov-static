@@ -27,7 +27,7 @@ https://www.realtimecolors.com/?colors=dcf4fe-021722-80dfff-393c65-786eae&fonts=
         --secondary: 214 61% 37%;
         --secondary-foreground: 0 0% 100%;
         --muted: 200 27.9% 16.9%;
-        --muted-foreground: 215 8% 29.4%;
+        --muted-foreground: 218, 20%, 48%;
         --accent: 198 36% 21%;
         --accent-foreground: 0 0% 98%;
         --destructive: 0 99% 63%;
@@ -39,9 +39,9 @@ https://www.realtimecolors.com/?colors=dcf4fe-021722-80dfff-393c65-786eae&fonts=
         --sidebar-foreground: 240 4.8% 95.9%;
         --sidebar-primary: 260 30% 23%;
         --sidebar-primary-foreground: 0 0% 100%;
-        --sidebar-accent: 237.9 26.1% 21.8%;
+        --sidebar-accent: 210.9 22.1% 14.8%;
         --sidebar-accent-foreground: 240 4.8% 95.9%;
-        --sidebar-border: 240 3.7% 35.9%;
+        --sidebar-border: 240 3.7% 15.9%;
         --sidebar-ring: 217.2 91.2% 59.8%;
         --chart-1: 12 76% 61%;
         --chart-2: 173 58% 39%;
