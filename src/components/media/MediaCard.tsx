@@ -82,10 +82,9 @@ function MediaCardContent({
         flareSize={300}
         cssColorVar="--secondary"
         backgroundClass="duration-100"
-        peakOpacity={0.5}
-        edgeBrightness={0.5}
+        peakOpacity={0.2}
         className={classNames({
-          "rounded-xl group-hover:opacity-100 bg-accent/25": canLink,
+          "rounded-xl group-hover:opacity-100": canLink,
         })}
       />
       <Flare.Child

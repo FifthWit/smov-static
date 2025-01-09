@@ -9,7 +9,6 @@ export interface FlareProps {
   cssColorVar?: string;
   enabled?: boolean;
   peakOpacity?: number;
-  edgeBrightness?: number;
 }
 
 const SIZE_DEFAULT = 200;
@@ -24,7 +23,7 @@ function Base(props: {
   return (
     <div
       tabIndex={props.tabIndex}
-      className={cn(props.className, "relative")}
+      className={cn(props.className, "relative hover:bg-accent/20")}
       onKeyUp={props.onKeyUp}
     >
       {props.children}
@@ -41,7 +40,6 @@ function Light(props: FlareProps) {
   const size = props.flareSize ?? SIZE_DEFAULT;
   const cssVar = props.cssColorVar ?? CSS_VAR_DEFAULT;
   const peakOpacity = props.peakOpacity ?? 0.1;
-  const edgeBrightness = props.edgeBrightness ?? 0.8;
 
   useEffect(() => {
     function mouseMove(e: MouseEvent) {
@@ -66,7 +64,7 @@ function Light(props: FlareProps) {
     <div
       ref={outerRef}
       className={cn(
-        "flare-light pointer-events-none absolute inset-0 overflow-hidden opacity-0 transition-opacity duration-[400ms]",
+        "flare-light pointer-events-none absolute inset-0 overflow-hidden opacity-0 transition-opacity duration-[400ms] bg-accent/20",
         props.className,
         {
           "!opacity-100": props.enabled ?? false,
@@ -80,7 +78,6 @@ function Light(props: FlareProps) {
       }}
     >
       <div
-        style={{ backgroundColor: `rgba(0, 0, 0, ${edgeBrightness})` }}
         className={cn(
           "absolute inset-[1px] overflow-hidden",
           props.className,
