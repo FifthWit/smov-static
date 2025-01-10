@@ -35,13 +35,13 @@ export function StatusCircle(props: StatusCircleProps | StatusCircleLoading) {
         {
           "p-0.5 border-current border-[3px] rounded-full h-6 w-6 relative transition-colors":
             true,
-          "text-video-scraping-loading": props.type === "loading",
-          "text-video-scraping-noresult text-opacity-50":
+          "text-primary": props.type === "loading",
+          "text-muted-foreground text-opacity-50":
             props.type === "waiting",
-          "text-video-scraping-error bg-video-scraping-error":
+          "text-destructive bg-transparent":
             props.type === "error",
-          "text-green-500 bg-green-500": props.type === "success",
-          "text-video-scraping-noresult bg-video-scraping-noresult":
+          "text-green-500 bg-background": props.type === "success",
+          "text-muted-foreground bg-background":
             props.type === "noresult",
         },
         props.className,
