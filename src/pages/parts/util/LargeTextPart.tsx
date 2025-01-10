@@ -15,7 +15,7 @@ export function LargeTextPart(props: {
 
       {/* Content */}
       {props.iconSlot ? props.iconSlot : null}
-      <div className="max-w-[19rem] mt-3 mb-12 text-type-secondary">
+      <div className="max-w-[19rem] mt-3 mb-12 text-muted-foreground">
         {props.children}
       </div>
     </div>

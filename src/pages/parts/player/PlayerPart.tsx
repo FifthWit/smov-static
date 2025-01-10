@@ -60,7 +60,7 @@ export function PlayerPart(props: PlayerPartProps) {
         <div className="grid grid-cols-[1fr,auto] xl:grid-cols-3 items-center">
           <div className="flex space-x-3 items-center">
             <Player.BackLink url={props.backUrl} />
-            <span className="text mx-3 text-type-secondary">/</span>
+            <span className="text mx-3 text-muted-foreground">/</span>
             <Player.Title />
             <Player.BookmarkButton />
           </div>

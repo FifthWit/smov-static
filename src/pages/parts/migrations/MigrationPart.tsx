@@ -16,7 +16,7 @@ export function MigrationPart() {
 
       {/* Content */}
       <Loading />
-      <p className="max-w-[19rem] mt-3 mb-12 text-type-secondary">
+      <p className="max-w-[19rem] mt-3 mb-12 text-muted-foreground">
         {t("screens.migration.inProgress")}
       </p>
     </div>

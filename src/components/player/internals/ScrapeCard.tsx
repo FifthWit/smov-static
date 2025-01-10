@@ -46,7 +46,7 @@ export function ScrapeItem(props: ScrapeItemProps) {
       <div>
         <p
           className={
-            status === "loading" ? "text-foreground" : "text-type-secondary"
+            status === "loading" ? "text-foreground" : "text-muted-foreground"
           }
         >
           {props.name}
