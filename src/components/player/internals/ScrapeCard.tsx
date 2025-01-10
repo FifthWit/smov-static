@@ -66,7 +66,7 @@ export function ScrapeCard(props: ScrapeCardProps) {
       <div
         className={classNames({
           "!bg-opacity-100 py-6": props.hasChildren,
-          "w-80 rounded-md px-6 bg-video-scraping-card bg-opacity-0": true,
+          "w-80 rounded-md p-6 bg-accent/20 bg-opacity-50": true,
         })}
       >
         <ScrapeItem {...props} />
