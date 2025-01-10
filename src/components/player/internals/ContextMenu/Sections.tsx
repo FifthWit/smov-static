@@ -8,7 +8,7 @@ export function SectionTitle(props: {
   return (
     <h3
       className={classNames(
-        "uppercase font-bold text-video-context-muted-foreground text-xs pt-8 pl-1 pb-2.5 border-b border-video-context-border",
+        "uppercase font-bold text-muted-foreground text-xs pt-8 pl-1 pb-2.5 border-b border-video-context-border",
         props.className,
       )}
     >
