@@ -99,7 +99,7 @@ export function Volume(props: Props) {
           >
             <div className="relative h-1 flex-1 rounded-full bg-gray-500 bg-opacity-50">
               <div
-                className="absolute inset-y-0 left-0 flex items-center justify-end rounded-full bg-video-audio-set"
+                className="absolute inset-y-0 left-0 flex items-center justify-end rounded-full bg-primary"
                 style={{
                   width: percentageString,
                 }}

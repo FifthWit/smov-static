@@ -27,7 +27,6 @@ import { CaptionsPart } from "@/pages/parts/settings/CaptionsPart";
 import { ConnectionsPart } from "@/pages/parts/settings/ConnectionsPart";
 import { DeviceListPart } from "@/pages/parts/settings/DeviceListPart";
 import { RegisterCalloutPart } from "@/pages/parts/settings/RegisterCalloutPart";
-import { SidebarPart } from "@/pages/parts/settings/SidebarPart";
 import { ThemePart } from "@/pages/parts/settings/ThemePart";
 import { PageTitle } from "@/pages/parts/util/PageTitle";
 import { AccountWithToken, useAuthStore } from "@/stores/auth";
@@ -44,16 +43,8 @@ function SettingsLayout(props: { children: React.ReactNode }) {
   const { isMobile } = useIsMobile();
 
   return (
-    <WideContainer ultraWide classNames="overflow-visible">
-      <div
-        className={classNames(
-          "grid gap-12",
-          isMobile ? "grid-cols-1" : "lg:grid-cols-[280px,1fr]",
-        )}
-      >
-        <SidebarPart />
-        <div>{props.children}</div>
-      </div>
+    <WideContainer classNames="overflow-visible">
+        {props.children}
     </WideContainer>
   );
 }
@@ -330,7 +321,7 @@ export function SettingsPage() {
       <Transition
         animation="fade"
         show={state.changed}
-        className="bg-settings-saveBar-background border-t border-settings-card-border/50 py-4 transition-opacity w-full fixed bottom-0 flex justify-between flex-col md:flex-row px-8 items-start md:items-center gap-3"
+        className="bg-settings-saveBar-background border-t border-settings-card-border/50 py-4 transition-opacity w-full fixed bottom-0 flex flex-col md:flex-row px-8 items-start md:items-center gap-3"
       >
         <p className="text-type-danger">{t("settings.unsaved")}</p>
         <div className="space-x-3 w-full md:w-auto flex">

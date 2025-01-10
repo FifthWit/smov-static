@@ -13,6 +13,7 @@ import { MediaItem } from "@/utils/mediaTypes";
 import { MediaBookmarkButton } from "./MediaBookmark";
 import { IconPatch } from "../buttons/IconPatch";
 import { Icons } from "../Icon";
+import { cn } from "@/lib/utils";
 
 export interface MediaCardProps {
   media: MediaItem;
@@ -73,23 +74,22 @@ function MediaCardContent({
 
   return (
     <Flare.Base
-      className={`group -m-[0.705em] rounded-xl bg-background-main transition-colors duration-300 focus:relative focus:z-10 ${
-        canLink ? "hover:bg-mediaCard-hoverBackground tabbable" : ""
-      }`}
+      className={cn(`group -m-[0.705em] rounded-xl transition-colors duration-300 focus:relative focus:z-10 bg-opacity-0`)}
       tabIndex={canLink ? 0 : -1}
       onKeyUp={(e) => e.key === "Enter" && e.currentTarget.click()}
     >
       <Flare.Light
         flareSize={300}
-        cssColorVar="--colors-mediaCard-hoverAccent"
-        backgroundClass="bg-mediaCard-hoverBackground duration-100"
+        cssColorVar="--secondary"
+        backgroundClass="duration-100"
+        peakOpacity={0.2}
         className={classNames({
-          "rounded-xl bg-background-main group-hover:opacity-100": canLink,
+          "rounded-xl group-hover:opacity-100": canLink,
         })}
       />
       <Flare.Child
         className={`pointer-events-auto relative mb-2 p-[0.4em] transition-transform duration-300 ${
-          canLink ? "group-hover:scale-95" : "opacity-60"
+          canLink ? "group-hover:scale-95" : "opacity-90"
         }`}
       >
         <div
@@ -106,13 +106,13 @@ function MediaCardContent({
           {series ? (
             <div
               className={[
-                "absolute right-2 top-2 rounded-md bg-mediaCard-badge px-2 py-1 transition-colors",
+                "absolute right-2 top-2 rounded-md bg-background/95 text-muted-foreground px-2 py-1 transition-colors",
               ].join(" ")}
             >
               <p
                 className={[
-                  "text-center text-xs font-bold text-mediaCard-badgeText transition-colors",
-                  closable ? "" : "group-hover:text-white",
+                  "text-center text-xs font-bold text-muted-foreground transition-colors",
+                  closable ? "" : "group-hover:text-foreground",
                 ].join(" ")}
               >
                 {t("media.episodeDisplay", {
@@ -131,14 +131,14 @@ function MediaCardContent({
                 }`}
               />
               <div
-                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-mediaCard-shadow to-transparent transition-colors ${
-                  canLink ? "group-hover:from-mediaCard-hoverShadow" : ""
+                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/70 to-transparent transition-colors ${
+                  canLink ? "group-hover:from-background/70" : ""
                 }`}
               />
               <div className="absolute inset-x-0 bottom-0 p-3">
-                <div className="relative h-1 overflow-hidden rounded-full bg-mediaCard-barColor">
+                <div className="relative h-1 overflow-hidden rounded-full bg-primary/25">
                   <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-mediaCard-barFillColor"
+                    className="absolute inset-y-0 left-0 rounded-full bg-primary"
                     style={{
                       width: percentageString,
                     }}
@@ -176,7 +176,7 @@ function MediaCardContent({
             />
           </div>
         </div>
-        <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-white">
+        <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-foreground">
           <span>{media.title}</span>
         </h1>
         <DotList className="text-xs" content={dotListContent} />

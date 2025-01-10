@@ -4,7 +4,7 @@ import { Navigation } from "@/components/layout/Navigation";
 export function PageLayout(props: { children: React.ReactNode }) {
   return (
     <FooterView>
-      <Navigation />
+      {/* <Navigation /> */}
       {props.children}
     </FooterView>
   );

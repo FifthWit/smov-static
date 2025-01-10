@@ -29,6 +29,9 @@ import { changeAppLanguage, useLanguageStore } from "@/stores/language";
 import { ProgressSyncer } from "@/stores/progress/ProgressSyncer";
 import { SettingsSyncer } from "@/stores/subtitles/SettingsSyncer";
 import { ThemeProvider } from "@/stores/theme";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+import { getCookieAsBoolean } from "@/lib/utils";
 
 import {
   extensionInfo,
@@ -173,21 +176,21 @@ const container = document.getElementById("root");
 const root = createRoot(container!);
 
 root.render(
-  <StrictMode>
-    <ErrorBoundary>
-      <HelmetProvider>
-        <Suspense fallback={<LoadingScreen type="lazy" />}>
-          <ExtensionStatus />
-          <ThemeProvider applyGlobal>
-            <ProgressSyncer />
-            <BookmarkSyncer />
-            <SettingsSyncer />
-            <TheRouter>
-              <MigrationRunner />
-            </TheRouter>
-          </ThemeProvider>
-        </Suspense>
-      </HelmetProvider>
-    </ErrorBoundary>
-  </StrictMode>,
+    <StrictMode>
+        <ErrorBoundary>
+            <HelmetProvider>
+            <Suspense fallback={<LoadingScreen type="lazy" />}>
+                    <ExtensionStatus />
+                    <ThemeProvider applyGlobal>
+                        <ProgressSyncer />
+                        <BookmarkSyncer />
+                        <SettingsSyncer />
+                            <TheRouter>
+                                <MigrationRunner />
+                            </TheRouter>
+                    </ThemeProvider>
+                </Suspense>
+            </HelmetProvider>
+        </ErrorBoundary>
+    </StrictMode>,
 );

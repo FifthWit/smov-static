@@ -3,13 +3,14 @@ import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useMountedState } from "react-use";
+import { Link } from "react-router-dom";
 import type { AsyncReturnType } from "type-fest";
 
 import {
   scrapePartsToProviderMetric,
   useReportProviders,
 } from "@/backend/helpers/report";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/layout/Loading";
 import {
   ScrapeCard,
@@ -160,20 +161,16 @@ export function ScrapingPartInterruptButton() {
   const { t } = useTranslation();
 
   return (
-    <div className="flex gap-3 pb-3">
-      <Button
-        href="/"
-        theme="secondary"
-        padding="md:px-17 p-3"
-        className="mt-6"
+    <div className="flex gap-4">
+      <Button asChild
+        className="mt-6 md:px-17 p-3"
       >
-        {t("notFound.goHome")}
+        <Link to="/">{t("notFound.goHome")}</Link>
       </Button>
       <Button
         onClick={() => window.location.reload()}
-        theme="purple"
-        padding="md:px-17 p-3"
-        className="mt-6"
+        variant="secondary"
+        className="mt-6 md:px-17 p-3"
       >
         {t("notFound.reloadButton")}
       </Button>

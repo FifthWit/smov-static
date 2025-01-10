@@ -25,7 +25,7 @@ export function AccountEditPart(props: {
   const profileEditModal = useModal("profile-edit");
 
   return (
-    <SettingsCard paddingClass="px-8 py-10" className="!mt-8">
+    <SettingsCard paddingClass="px-8 py-10" className="!mt-8 w-full">
       <ProfileEditModal
         id={profileEditModal.id}
         close={profileEditModal.hide}
