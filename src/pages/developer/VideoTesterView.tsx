@@ -67,7 +67,7 @@ export default function VideoTesterView() {
                 <Title>Custom stream</Title>
                 <div className="grid grid-cols-[1fr,auto] gap-2 items-center">
                   <TextInputControl
-                    className="bg-video-context-flagBg rounded-md p-2 text-white w-full"
+                    className="bg-video-context-flagBg rounded-md p-2 text-foreground w-full"
                     value={inputSource}
                     onChange={setInputSource}
                     placeholder="https://..."

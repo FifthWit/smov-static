@@ -324,7 +324,7 @@ export function Discover() {
     // https://tailwindcss.com/docs/border-style
     return (
       <div className="relative overflow-hidden mt-2">
-        <h2 className="text-2xl cursor-default font-bold text-white sm:text-3xl md:text-2xl mx-auto pl-5">
+        <h2 className="text-2xl cursor-default font-bold text-foreground sm:text-3xl md:text-2xl mx-auto pl-5">
           {displayCategory}
         </h2>
         <div
@@ -382,7 +382,7 @@ export function Discover() {
                     loading="lazy"
                     className="rounded-xl relative"
                   />
-                  <h1 className="group relative pt-2 text-[13.5px] whitespace-normal duration-[0.35s] font-semibold text-white opacity-0 group-hover:opacity-100">
+                  <h1 className="group relative pt-2 text-[13.5px] whitespace-normal duration-[0.35s] font-semibold text-foreground opacity-0 group-hover:opacity-100">
                     {isTVShow
                       ? (media.name?.length ?? 0) > 32
                         ? `${media.name?.slice(0, 32)}...`
@@ -403,7 +403,7 @@ export function Discover() {
             className="absolute left-5 top-1/2 transform -translate-y-3/4 z-10"
             onClick={() => scrollCarousel(categorySlug, "left")}
           >
-            <div className="cursor-pointer text-white flex justify-center items-center h-10 w-10 rounded-full bg-search-hoverBackground active:scale-110 transition-[transform,background-color] duration-200">
+            <div className="cursor-pointer text-foreground flex justify-center items-center h-10 w-10 rounded-full bg-search-hoverBackground active:scale-110 transition-[transform,background-color] duration-200">
               <Icon icon={Icons.ARROW_LEFT} />
             </div>
           </button>
@@ -413,7 +413,7 @@ export function Discover() {
             className="absolute right-5 top-1/2 transform -translate-y-3/4 z-10"
             onClick={() => scrollCarousel(categorySlug, "right")}
           >
-            <div className="cursor-pointer text-white flex justify-center items-center h-10 w-10 rounded-full bg-search-hoverBackground active:scale-110 transition-[transform,background-color] duration-200">
+            <div className="cursor-pointer text-foreground flex justify-center items-center h-10 w-10 rounded-full bg-search-hoverBackground active:scale-110 transition-[transform,background-color] duration-200">
               <Icon icon={Icons.ARROW_RIGHT} />
             </div>
           </button>
@@ -487,7 +487,7 @@ export function Discover() {
         <PageTitle subpage k="global.pages.discover" />
         <div className="mt-44 space-y-16 text-center">
           <div className="relative z-10 mb-16">
-            <h1 className="text-4xl cursor-default font-bold text-white">
+            <h1 className="text-4xl cursor-default font-bold text-foreground">
               {t("global.pages.discover")}
             </h1>
           </div>
@@ -497,7 +497,7 @@ export function Discover() {
         <div className="flex items-center justify-center mb-6">
           <button
             type="button"
-            className="flex items-center space-x-2 rounded-full px-4 text-white py-2 bg-pill-background bg-opacity-50 hover:bg-pill-backgroundHover transition-[background,transform] duration-100 hover:scale-105"
+            className="flex items-center space-x-2 rounded-full px-4 text-foreground py-2 bg-pill-background bg-opacity-50 hover:bg-pill-backgroundHover transition-[background,transform] duration-100 hover:scale-105"
             onClick={handleRandomMovieClick}
           >
             <span className="flex items-center">
@@ -553,7 +553,7 @@ export function Discover() {
           ))}
           <div className="flex items-center">
             <Divider marginClass="mr-5" />
-            <h1 className="text-4xl font-bold text-white mx-auto">Shows</h1>
+            <h1 className="text-4xl font-bold text-foreground mx-auto">Shows</h1>
             <Divider marginClass="ml-5" />
           </div>
           {tvCategories.map((category) => (

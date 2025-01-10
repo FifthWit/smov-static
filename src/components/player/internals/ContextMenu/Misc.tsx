@@ -57,7 +57,7 @@ export function Paragraph(props: {
 }
 
 export function Highlight(props: { children?: React.ReactNode }) {
-  return <span className="text-white">{props.children}</span>;
+  return <span className="text-foreground">{props.children}</span>;
 }
 
 export function TextDisplay(props: {
@@ -74,7 +74,7 @@ export function TextDisplay(props: {
           </div>
         )}
         {props.title ? (
-          <h2 className="text-white text-lg font-bold">{props.title}</h2>
+          <h2 className="text-foreground text-lg font-bold">{props.title}</h2>
         ) : null}
         <div>{props.children}</div>
       </div>

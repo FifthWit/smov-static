@@ -46,13 +46,13 @@ export function CaptionPreview(props: {
         >
           <button
             type="button"
-            className="tabbable bg-black absolute right-3 top-3 text-white bg-opacity-25 duration-100 transition-[background-color,transform] active:scale-110 hover:bg-opacity-50 p-2 rounded-md cursor-pointer"
+            className="tabbable bg-black absolute right-3 top-3 text-foreground bg-opacity-25 duration-100 transition-[background-color,transform] active:scale-110 hover:bg-opacity-50 p-2 rounded-md cursor-pointer"
             onClick={props.onToggle}
           >
             <Icon icon={props.fullscreen ? Icons.X : Icons.EXPAND} />
           </button>
 
-          <div className="text-white pointer-events-none absolute flex w-full flex-col items-center transition-[bottom] bottom-0 p-4">
+          <div className="text-foreground pointer-events-none absolute flex w-full flex-col items-center transition-[bottom] bottom-0 p-4">
             <div
               className={
                 props.fullscreen ? "" : "transform origin-bottom text-[0.5rem]"

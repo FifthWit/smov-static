@@ -29,7 +29,7 @@ export function LargeCardText(props: {
         {props.icon ? (
           <div className="text-2xl mb-4 text-largeCard-icon">{props.icon}</div>
         ) : null}
-        <h2 className="text-xl text-white font-bold">{props.title}</h2>
+        <h2 className="text-xl text-foreground font-bold">{props.title}</h2>
         {props.children ? (
           <div className="text-type-text mt-4">{props.children}</div>
         ) : null}

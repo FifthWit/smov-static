@@ -125,7 +125,7 @@ export function SubtitleView(props: { controlsShown: boolean }) {
     >
       <div
         className={classNames([
-          "text-white absolute flex w-full flex-col items-center transition-[bottom]",
+          "text-foreground absolute flex w-full flex-col items-center transition-[bottom]",
           props.controlsShown ? "bottom-24" : "bottom-12",
         ])}
       >

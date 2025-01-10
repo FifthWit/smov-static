@@ -12,13 +12,13 @@ export interface IconPatchProps {
 
 export function IconPatch(props: IconPatchProps) {
   const clickableClasses = props.clickable
-    ? "cursor-pointer hover:scale-110 hover:bg-background hover:text-white active:scale-125"
+    ? "cursor-pointer hover:scale-110 hover:bg-background hover:text-foreground active:scale-125"
     : "";
   const transparentClasses = props.transparent
     ? "bg-opacity-0 hover:bg-opacity-50"
     : "";
   const activeClasses = props.active
-    ? "bg-background/50 text-white"
+    ? "bg-background/50 text-foreground"
     : "";
   const sizeClasses = props.downsized ? "h-10 w-10" : "h-12 w-12";
 

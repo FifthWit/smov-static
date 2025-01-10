@@ -10,13 +10,13 @@ export function EpisodeTitle() {
 
   return (
     <div className="flex gap-3">
-      <span className="text-white font-medium">
+      <span className="text-foreground font-medium">
         {t("media.episodeDisplay", {
           season: meta?.season?.number,
           episode: meta?.episode?.number,
         })}
       </span>
-      <span className="text-type-secondary font-medium">
+      <span className="text-muted-foreground font-medium">
         {meta?.episode?.title}
       </span>
     </div>

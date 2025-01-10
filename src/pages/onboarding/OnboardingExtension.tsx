@@ -106,7 +106,7 @@ export function ExtensionStatus(props: {
               <Trans
                 i18nKey="onboarding.extension.extensionHelp"
                 components={{
-                  bold: <span className="text-white" />,
+                  bold: <span className="text-foreground" />,
                 }}
               />
             </p>
@@ -176,7 +176,7 @@ function IosExtensionPage(_props: ExtensionPageProps) {
       <Paragraph className="max-w-[320px] mb-4">
         <Trans
           i18nKey="onboarding.extension.explainerIos"
-          components={{ bold: <span className="text-white font-bold" /> }}
+          components={{ bold: <span className="text-foreground font-bold" /> }}
         />
       </Paragraph>
     </>

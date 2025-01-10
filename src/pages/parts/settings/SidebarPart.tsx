@@ -150,7 +150,7 @@ export function SidebarPart() {
               <p className="text-type-dimmed font-medium">
                 {t("settings.sidebar.info.hostname")}
               </p>
-              <p className="text-white">{hostname}</p>
+              <p className="text-foreground">{hostname}</p>
             </div>
 
             {/* Backend URL */}
@@ -159,7 +159,7 @@ export function SidebarPart() {
                 <p>{t("settings.sidebar.info.backendUrl")}</p>
                 <SecureBadge url={backendUrl} />
               </div>
-              <p className="text-white">
+              <p className="text-foreground">
                 {backendUrl?.replace(/https?:\/\//, "") ?? "—"}
               </p>
             </div>
@@ -169,7 +169,7 @@ export function SidebarPart() {
               <p className="text-type-dimmed font-medium">
                 {t("settings.sidebar.info.userId")}
               </p>
-              <p className="text-white">
+              <p className="text-foreground">
                 {account?.userId ?? t("settings.sidebar.info.notLoggedIn")}
               </p>
             </div>

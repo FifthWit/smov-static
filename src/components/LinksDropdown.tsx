@@ -64,7 +64,7 @@ function DropdownLink(props: {
         "tabbable cursor-pointer flex gap-3 items-center m-3 p-1 rounded font-medium transition-colors duration-100",
         props.highlight
           ? "text-dropdown-highlight hover:text-dropdown-highlightHover"
-          : "text-dropdown-text hover:text-white",
+          : "text-dropdown-text hover:text-foreground",
         props.className,
       )}
     >
@@ -78,7 +78,7 @@ function CircleDropdownLink(props: { icon: Icons; href: string }) {
   return (
     <GoToLink
       href={props.href}
-      className="tabbable w-11 h-11 rounded-full bg-dropdown-contentBackground text-dropdown-text hover:text-white transition-colors duration-100 flex justify-center items-center"
+      className="tabbable w-11 h-11 rounded-full bg-dropdown-contentBackground text-dropdown-text hover:text-foreground transition-colors duration-100 flex justify-center items-center"
     >
       <Icon className="text-2xl" icon={props.icon} />
     </GoToLink>
@@ -113,7 +113,7 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
   return (
     <div className="relative is-dropdown z-2">
       <div
-        className="cursor-pointer tabbable rounded-full flex gap-2 text-white items-center py-2 px-3 bg-pill-background bg-opacity-50 hover:bg-pill-backgroundHover backdrop-blur-lg transition-[background,transform] duration-100 hover:scale-105"
+        className="cursor-pointer tabbable rounded-full flex gap-2 text-foreground items-center py-2 px-3 bg-pill-background bg-opacity-50 hover:bg-pill-backgroundHover backdrop-blur-lg transition-[background,transform] duration-100 hover:scale-105"
         tabIndex={0}
         onClick={toggleOpen}
         onKeyUp={(evt) => evt.key === "Enter" && toggleOpen()}
@@ -130,7 +130,7 @@ export function LinksDropdown(props: { children: React.ReactNode }) {
       <Transition animation="slide-down" show={open}>
         <div className="rounded-lg absolute w-64 bg-dropdown-altBackground top-full mt-3 right-0">
           {deviceName && bufferSeed ? (
-            <DropdownLink className="text-white" href="/settings">
+            <DropdownLink className="text-foreground" href="/settings">
               <UserAvatar />
               {decryptData(deviceName, bufferSeed)}
             </DropdownLink>

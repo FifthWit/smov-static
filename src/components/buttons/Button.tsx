@@ -45,12 +45,12 @@ export function Button(props: Props) {
 
   let colorClasses = "bg-white hover:bg-gray-200 text-black";
   if (props.theme === "purple")
-    colorClasses = "bg-buttons-purple hover:bg-buttons-purpleHover text-white";
+    colorClasses = "bg-buttons-purple hover:bg-buttons-purpleHover text-foreground";
   if (props.theme === "secondary")
     colorClasses =
-      "bg-buttons-cancel hover:bg-buttons-cancelHover transition-colors duration-100 text-white";
+      "bg-buttons-cancel hover:bg-buttons-cancelHover transition-colors duration-100 text-foreground";
   if (props.theme === "danger")
-    colorClasses = "bg-buttons-danger hover:bg-buttons-dangerHover text-white";
+    colorClasses = "bg-buttons-danger hover:bg-buttons-dangerHover text-foreground";
 
   let classes = classNames(
     "tabbable cursor-pointer inline-flex items-center justify-center rounded-lg font-medium transition-[transform,background-color] duration-100 active:scale-105 md:px-8",
@@ -128,10 +128,10 @@ interface ButtonPlainProps {
 export function ButtonPlain(props: ButtonPlainProps) {
   let colorClasses = "bg-white hover:bg-gray-200 text-black";
   if (props.theme === "purple")
-    colorClasses = "bg-buttons-purple hover:bg-buttons-purpleHover text-white";
+    colorClasses = "bg-buttons-purple hover:bg-buttons-purpleHover text-foreground";
   if (props.theme === "secondary")
     colorClasses =
-      "bg-buttons-cancel hover:bg-buttons-cancelHover transition-colors duration-100 text-white";
+      "bg-buttons-cancel hover:bg-buttons-cancelHover transition-colors duration-100 text-foreground";
 
   const classes = classNames(
     "cursor-pointer inline-flex items-center justify-center rounded-lg font-medium transition-[transform,background-color] duration-100 active:scale-105 md:px-8",

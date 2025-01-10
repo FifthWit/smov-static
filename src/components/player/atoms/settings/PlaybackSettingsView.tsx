@@ -20,7 +20,7 @@ function ButtonList(props: {
             className={classNames(
               "w-full px-2 py-1 rounded-md tabbable",
               props.selected === option
-                ? "bg-video-context-buttons-active text-white"
+                ? "bg-video-context-buttons-active text-foreground"
                 : null,
             )}
             onClick={() => props.onClick(option)}

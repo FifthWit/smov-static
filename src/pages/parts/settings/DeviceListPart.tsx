@@ -38,7 +38,7 @@ export function Device(props: {
         <SecondaryLabel>
           {t("settings.account.devices.deviceNameLabel")}
         </SecondaryLabel>
-        <p className="text-white">{props.name}</p>
+        <p className="text-foreground">{props.name}</p>
       </div>
       {!props.isCurrent ? (
         <Button theme="danger" loading={result.loading} onClick={exec}>

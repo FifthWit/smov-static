@@ -45,7 +45,7 @@ export function PlayerPart(props: PlayerPartProps) {
       ) : null}
 
       <Player.CenterMobileControls
-        className="text-white"
+        className="text-foreground"
         show={showTouchTargets && status === playerStatus.PLAYING}
       >
         <Player.SkipBackward iconSizeClass="text-3xl" />

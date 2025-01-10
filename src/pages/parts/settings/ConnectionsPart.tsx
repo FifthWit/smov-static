@@ -50,7 +50,7 @@ function ProxyEdit({ proxyUrls, setProxyUrls }: ProxyEditProps) {
     <SettingsCard>
       <div className="flex justify-between items-center gap-4">
         <div className="my-3">
-          <p className="text-white font-bold mb-3">
+          <p className="text-foreground font-bold mb-3">
             {t("settings.connections.workers.label")}
           </p>
           <p className="max-w-[20rem] font-medium">
@@ -71,7 +71,7 @@ function ProxyEdit({ proxyUrls, setProxyUrls }: ProxyEditProps) {
       {proxyUrls !== null ? (
         <>
           <Divider marginClass="my-6 px-8 box-content -mx-8" />
-          <p className="text-white font-bold mb-3">
+          <p className="text-foreground font-bold mb-3">
             {t("settings.connections.workers.urlLabel")}
           </p>
 
@@ -97,7 +97,7 @@ function ProxyEdit({ proxyUrls, setProxyUrls }: ProxyEditProps) {
                 <button
                   type="button"
                   onClick={() => removeItem(i)}
-                  className="h-full scale-90 hover:scale-100 rounded-full aspect-square bg-authentication-inputBg hover:bg-authentication-inputBgHover flex justify-center items-center transition-transform duration-200 hover:text-white cursor-pointer"
+                  className="h-full scale-90 hover:scale-100 rounded-full aspect-square bg-authentication-inputBg hover:bg-authentication-inputBgHover flex justify-center items-center transition-transform duration-200 hover:text-foreground cursor-pointer"
                 >
                   <Icon className="text-xl" icon={Icons.X} />
                 </button>
@@ -120,7 +120,7 @@ function BackendEdit({ backendUrl, setBackendUrl }: BackendEditProps) {
     <SettingsCard>
       <div className="flex justify-between items-center gap-4">
         <div className="my-3">
-          <p className="text-white font-bold mb-3">
+          <p className="text-foreground font-bold mb-3">
             {t("settings.connections.server.label")}
           </p>
           <p className="max-w-[20rem] font-medium">
@@ -141,7 +141,7 @@ function BackendEdit({ backendUrl, setBackendUrl }: BackendEditProps) {
       {backendUrl !== null ? (
         <>
           <Divider marginClass="my-6 px-8 box-content -mx-8" />
-          <p className="text-white font-bold mb-3">
+          <p className="text-foreground font-bold mb-3">
             {t("settings.connections.server.urlLabel")}
           </p>
           <AuthInputBox onChange={setBackendUrl} value={backendUrl ?? ""} />

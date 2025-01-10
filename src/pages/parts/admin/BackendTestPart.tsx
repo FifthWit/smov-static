@@ -69,25 +69,25 @@ export function BackendTestPart() {
             {status.hasTested && status.success ? (
               <>
                 <p>
-                  <span className="inline-block w-36 text-white font-medium">
+                  <span className="inline-block w-36 text-foreground font-medium">
                     Version:
                   </span>
                   {status.value?.version}
                 </p>
                 <p>
-                  <span className="inline-block w-36 text-white font-medium">
+                  <span className="inline-block w-36 text-foreground font-medium">
                     Backend name:
                   </span>
                   {status.value?.name}
                 </p>
                 <p>
-                  <span className="inline-block w-36 text-white font-medium">
+                  <span className="inline-block w-36 text-foreground font-medium">
                     Description:
                   </span>
                   {status.value?.description ?? "Not set"}
                 </p>
                 <p>
-                  <span className="inline-block w-36 text-white font-medium">
+                  <span className="inline-block w-36 text-foreground font-medium">
                     Captcha enabled:
                   </span>
                   {status.value?.hasCaptcha ? "Yes" : "No"}
@@ -110,7 +110,7 @@ export function BackendTestPart() {
             </p>
           ) : (
             <div>
-              <p className="text-white font-bold w-full mb-3 flex items-center gap-1">
+              <p className="text-foreground font-bold w-full mb-3 flex items-center gap-1">
                 <Icon
                   icon={Icons.CIRCLE_EXCLAMATION}
                   className="text-video-scraping-error mr-2"

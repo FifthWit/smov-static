@@ -159,7 +159,7 @@ function EpisodesView({
               100;
             rightSide = (
               <ProgressRing
-                className="h-[18px] w-[18px] text-white"
+                className="h-[18px] w-[18px] text-foreground"
                 percentage={percentage > 90 ? 100 : percentage}
               />
             );
@@ -186,7 +186,7 @@ function EpisodesView({
                     className={classNames(
                       "p-0.5 px-2 rounded inline bg-video-context-hoverColor",
                       ep.id === meta?.episode?.tmdbId
-                        ? "text-white bg-opacity-100"
+                        ? "text-foreground bg-opacity-100"
                         : "bg-opacity-50",
                       hasAired(ep.air_date) || ep.id === meta?.episode?.tmdbId
                         ? ""

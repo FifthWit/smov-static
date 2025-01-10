@@ -24,7 +24,7 @@ export const VideoPlayerButton = forwardRef<
       className={classNames([
         "tabbable p-2 rounded-full hover:bg-background hover:bg-opacity-50 transition-transform duration-100 flex items-center gap-3",
         props.activeClass ??
-          "active:scale-110 active:bg-opacity-75 active:text-white",
+          "active:scale-110 active:bg-opacity-75 active:text-foreground",
         props.className ?? "",
       ])}
     >

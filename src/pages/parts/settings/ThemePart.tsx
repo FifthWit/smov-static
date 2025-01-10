@@ -71,7 +71,7 @@ function ThemePreview(props: {
         <Icon
           icon={Icons.CHECKMARK}
           className={classNames(
-            "absolute top-3 right-3 text-xs text-white transition-opacity duration-150",
+            "absolute top-3 right-3 text-xs text-foreground transition-opacity duration-150",
             props.active ? "opacity-100" : "opacity-0",
           )}
         />
@@ -116,10 +116,10 @@ function ThemePreview(props: {
         </div>
       </div>
       <div className="mt-2 flex justify-between items-center">
-        <span className="font-medium text-white">{props.name}</span>
+        <span className="font-medium text-foreground">{props.name}</span>
         <span
           className={classNames(
-            "inline-block px-3 py-1 leading-tight text-sm transition-opacity duration-150 rounded-full bg-pill-activeBackground text-white/85",
+            "inline-block px-3 py-1 leading-tight text-sm transition-opacity duration-150 rounded-full bg-pill-activeBackground text-foreground/85",
             props.inUse ? "opacity-100" : "opacity-0 pointer-events-none",
           )}
         >

@@ -12,8 +12,8 @@ export function Banner(props: {
   const [ref] = useRegisterBanner<HTMLDivElement>(props.id);
   const hideBanner = useBannerStore((s) => s.hideBanner);
   const styles = {
-    error: "bg-[#C93957] text-white",
-    info: "bg-[#126FD3] text-white", // Add "info" style
+    error: "bg-[#C93957] text-foreground",
+    info: "bg-[#126FD3] text-foreground", // Add "info" style
   };
   const icons = {
     error: Icons.CIRCLE_EXCLAMATION,

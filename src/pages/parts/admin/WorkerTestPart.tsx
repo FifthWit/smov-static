@@ -37,7 +37,7 @@ export function WorkerItem(props: {
         })}
       />
       <div className="flex-1">
-        <p className="text-white font-bold">{props.name}</p>
+        <p className="text-foreground font-bold">{props.name}</p>
         {props.errorText ? <p>{props.errorText}</p> : null}
         {urlWithoutProtocol ? <p>{urlWithoutProtocol}</p> : null}
       </div>

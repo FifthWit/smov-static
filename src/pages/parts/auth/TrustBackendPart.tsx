@@ -34,7 +34,7 @@ export function TrustBackendPart(props: TrustBackendPartProps) {
 
   let cardContent = (
     <>
-      <h3 className="text-white font-bold text-lg">
+      <h3 className="text-foreground font-bold text-lg">
         {t("auth.trust.failed.title")}
       </h3>
       <p>{t("auth.trust.failed.text")}</p>
@@ -44,7 +44,7 @@ export function TrustBackendPart(props: TrustBackendPartProps) {
   if (result.value)
     cardContent = (
       <>
-        <h3 className="text-white font-bold text-lg">{result.value.name}</h3>
+        <h3 className="text-foreground font-bold text-lg">{result.value.name}</h3>
         {result.value.description ? (
           <p className="text-center">{result.value.description}</p>
         ) : null}
@@ -64,7 +64,7 @@ export function TrustBackendPart(props: TrustBackendPartProps) {
               hostname,
             }}
           >
-            <span className="text-white" />
+            <span className="text-foreground" />
           </Trans>
         ) : (
           <p>{t("auth.trust.noHost")}</p>

@@ -69,7 +69,7 @@ export function Ol(props: { items: React.ReactNode[] }) {
 function Item(props: { title: string; children: React.ReactNode }) {
   return (
     <>
-      <p className="text-white mb-2 font-medium">{props.title}</p>
+      <p className="text-foreground mb-2 font-medium">{props.title}</p>
       <div className="text-type-text">{props.children}</div>
     </>
   );

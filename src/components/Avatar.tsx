@@ -22,7 +22,7 @@ export function Avatar({className, profile, sizeClass, iconClass, bottom}: Avata
       <div
         className={classNames(
           sizeClass,
-          "rounded-full overflow-hidden flex items-center justify-center text-white",
+          "rounded-full overflow-hidden flex items-center justify-center text-foreground",
         )}
         style={{
           background: `linear-gradient(to bottom right, ${profile.colorA}, ${profile.colorB})`,

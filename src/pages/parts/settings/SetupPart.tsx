@@ -100,10 +100,10 @@ function SetupCheckList(props: {
       <div>
         <p
           className={classNames({
-            "!text-white": props.grey && props.highlight,
+            "!text-foreground": props.grey && props.highlight,
             "!text-type-dimmed opacity-75": props.grey && !props.highlight,
             "text-type-danger": props.status === "error",
-            "text-white": props.status === "success",
+            "text-foreground": props.status === "success",
           })}
         >
           {props.children}

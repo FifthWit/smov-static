@@ -18,7 +18,7 @@ export function BottomControls(props: {
   }, [setHoveringAnyControls]);
 
   return (
-    <div className="w-full text-white">
+    <div className="w-full text-foreground">
       <Transition
         animation="fade"
         show={props.show}

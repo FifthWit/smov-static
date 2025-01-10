@@ -21,7 +21,7 @@ export function TopControls(props: {
   }, [setHoveringAnyControls]);
 
   return (
-    <div className="w-full text-white">
+    <div className="w-full text-foreground">
       <Transition
         animation="fade"
         show={props.show}
@@ -44,7 +44,7 @@ export function TopControls(props: {
         <Transition
           animation="slide-down"
           show={props.show}
-          className="text-white"
+          className="text-foreground"
         >
           {props.children}
         </Transition>

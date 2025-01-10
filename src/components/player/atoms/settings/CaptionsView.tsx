@@ -135,7 +135,7 @@ export function CaptionsView({
       <div>
         <div
           className={classNames(
-            "absolute inset-0 flex items-center justify-center text-white z-10 pointer-events-none transition-opacity duration-300",
+            "absolute inset-0 flex items-center justify-center text-foreground z-10 pointer-events-none transition-opacity duration-300",
             dragging ? "opacity-100" : "opacity-0",
           )}
         >

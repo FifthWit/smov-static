@@ -43,7 +43,7 @@ function ConfigValue(props: { name: string; children?: ReactNode }) {
   return (
     <>
       <div className="flex">
-        <p className="flex-1 font-bold text-white pr-5">{props.name}</p>
+        <p className="flex-1 font-bold text-foreground pr-5">{props.name}</p>
         <p>{props.children}</p>
       </div>
       <Divider marginClass="my-3" />

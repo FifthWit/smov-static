@@ -26,7 +26,7 @@ export function DmcaPage() {
           <Trans
             i18nKey="screens.dmca.text"
             components={{
-              bold: <span className="font-bold text-white" />,
+              bold: <span className="font-bold text-foreground" />,
             }}
             values={{
               dmca: conf().DMCA_EMAIL,

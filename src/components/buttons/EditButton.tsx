@@ -22,7 +22,7 @@ export function EditButton(props: EditButtonProps) {
     <Button
       type="button"
       onClick={onClick}
-      className="bg-secondary/30 hover:bg-secondary/50 flex h-12 items-center overflow-hidden rounded-full px-4 py-2 text-white transition-[background-color,transform] active:scale-105"
+      className="bg-secondary/30 hover:bg-secondary/50 flex h-12 items-center overflow-hidden rounded-full px-4 py-2 text-foreground transition-[background-color,transform] active:scale-105"
     >
       <span ref={parent}>
         {props.editing ? (
