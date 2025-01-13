@@ -3,9 +3,8 @@ import { useAsyncFn } from "react-use";
 
 import { deleteUser } from "@/backend/accounts/user";
 import { Button } from "@/components/ui/button";
-import { SolidSettingsCard } from "@/components/layout/SettingsCard";
 import { useModal } from "@/components/overlays/Modal";
-import { Heading2, Heading3, Paragraph } from "@/components/utils/Text";
+import { Heading2  } from "@/components/utils/Text";
 import { useAuthData } from "@/hooks/auth/useAuthData";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { useAuthStore } from "@/stores/auth";
@@ -53,7 +52,7 @@ export function AccountActionsPart() {
                 {t("settings.account.actions.delete.text")}
               </CardDescription>
         </CardHeader>
-        <CardFooter>
+        <CardFooter className="flex justify-end items-center">
             <Dialog>
                 <DialogTrigger>
                     <Button variant="destructive">
