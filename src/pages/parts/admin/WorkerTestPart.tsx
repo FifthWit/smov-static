@@ -3,12 +3,18 @@ import { useMemo, useState } from "react";
 import { useAsyncFn } from "react-use";
 
 import { singularProxiedFetch } from "@/backend/helpers/fetch";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { Icon, Icons } from "@/components/Icon";
-import { Box } from "@/components/layout/Box";
-import { Divider } from "@/components/utils/Divider";
 import { Heading2 } from "@/components/utils/Text";
 import { getProxyUrls } from "@/utils/proxyUrls";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 export function WorkerItem(props: {
   name: string;
@@ -37,7 +43,7 @@ export function WorkerItem(props: {
         })}
       />
       <div className="flex-1">
-        <p className="text-foreground font-bold">{props.name}</p>
+        <p className="text-foreground font-bold">{props.name}</p>Sigma
         {props.errorText ? <p>{props.errorText}</p> : null}
         {urlWithoutProtocol ? <p>{urlWithoutProtocol}</p> : null}
       </div>
@@ -103,29 +109,33 @@ export function WorkerTestPart() {
   }, [workerList, setWorkerState]);
 
   return (
-    <>
-      <Heading2 className="!mb-0 mt-12">Worker tests</Heading2>
-      <p className="mb-8 mt-2">{workerList.length} worker(s) registered</p>
-      <Box>
-        {workerList.map((v, i) => {
-          const s = workerState.find((segment) => segment.id === v.id);
-          const name = `Worker ${i + 1}`;
-          if (!s) return <WorkerItem name={name} key={v.id} />;
-          if (s.status === "error")
-            return (
-              <WorkerItem
-                name={name}
-                errored
-                key={v.id}
-                errorText={s.error?.toString()}
-              />
-            );
-          if (s.status === "success")
-            return <WorkerItem name={name} url={v.url} success key={v.id} />;
-          return <WorkerItem name={name} key={v.id} />;
-        })}
-        <Divider />
-        <div className="flex justify-end">
+      <Card>
+        <CardHeader>
+            <CardTitle>
+                Test Workers
+            </CardTitle>
+            {workerList.map((v, i) => {
+              const s = workerState.find((segment) => segment.id === v.id);
+              const name = `Worker ${i + 1}`;
+              if (!s) return <WorkerItem name={name} key={v.id} />;
+              if (s.status === "error")
+                return (
+                  <WorkerItem
+                    name={name}
+                    errored
+                    key={v.id}
+                    errorText={s.error?.toString()}
+                  />
+                );
+              if (s.status === "success")
+                return <WorkerItem name={name} url={v.url} success key={v.id} />;
+              return <WorkerItem name={name} key={v.id} />;
+            })}
+            <CardDescription>
+                Test the workers to see if they are working correctly
+            </CardDescription>
+        </CardHeader>
+        <CardFooter className="flex justify-end items-center">
           {buttonClicked ? (
             workerState.every((worker) => worker.status === "success") ? (
               <p>
@@ -142,8 +152,6 @@ export function WorkerTestPart() {
                   {/* Show button if tests fail */}
                   <div className="flex justify-end">
                     <Button
-                      theme="purple"
-                      loading={testState.loading}
                       onClick={async (event) => {
                         event.preventDefault();
                         setButtonDisabled(true);
@@ -161,8 +169,6 @@ export function WorkerTestPart() {
             )
           ) : (
             <Button
-              theme="purple"
-              loading={testState.loading}
               onClick={async (event) => {
                 event.preventDefault();
                 setButtonDisabled(true);
@@ -175,8 +181,7 @@ export function WorkerTestPart() {
               Test workers
             </Button>
           )}
-        </div>
-      </Box>
-    </>
+        </CardFooter>
+      </Card>
   );
 }
