@@ -2,13 +2,30 @@ import { useTranslation } from "react-i18next";
 import { useAsyncFn } from "react-use";
 
 import { deleteUser } from "@/backend/accounts/user";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { SolidSettingsCard } from "@/components/layout/SettingsCard";
-import { Modal, ModalCard, useModal } from "@/components/overlays/Modal";
+import { useModal } from "@/components/overlays/Modal";
 import { Heading2, Heading3, Paragraph } from "@/components/utils/Text";
 import { useAuthData } from "@/hooks/auth/useAuthData";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
 import { useAuthStore } from "@/stores/auth";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTrigger,
+    DialogFooter,
+} from "@/components/ui/dialog"
+
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 export function AccountActionsPart() {
   const { t } = useTranslation();
@@ -29,43 +46,40 @@ export function AccountActionsPart() {
   return (
     <div>
       <Heading2 border>{t("settings.account.actions.title")}</Heading2>
-      <SolidSettingsCard
-        paddingClass="px-6 py-12"
-        className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12"
-      >
-        <div>
-          <Heading3>{t("settings.account.actions.delete.title")}</Heading3>
-          <p className="text-type-text">
-            {t("settings.account.actions.delete.text")}
-          </p>
-        </div>
-        <div className="flex justify-start lg:justify-end items-center">
-          <Button
-            theme="danger"
-            loading={deleteResult.loading}
-            onClick={deleteModal.show}
-          >
-            {t("settings.account.actions.delete.button")}
-          </Button>
-        </div>
-      </SolidSettingsCard>
-      <Modal id={deleteModal.id}>
-        <ModalCard>
-          <Heading2 className="!mt-0">
-            {t("settings.account.actions.delete.confirmTitle")}
-          </Heading2>
-          <Paragraph>
-            {t("settings.account.actions.delete.confirmDescription")}
-          </Paragraph>
-          <Button
-            theme="danger"
-            loading={deleteResult.loading}
-            onClick={deleteExec}
-          >
-            {t("settings.account.actions.delete.confirmButton")}
-          </Button>
-        </ModalCard>
-      </Modal>
+      <Card>
+        <CardHeader>
+            <CardTitle>{t("settings.account.actions.delete.title")}</CardTitle>
+              <CardDescription className="text-muted-foreground">
+                {t("settings.account.actions.delete.text")}
+              </CardDescription>
+        </CardHeader>
+        <CardFooter>
+            <Dialog>
+                <DialogTrigger>
+                    <Button variant="destructive">
+                        {t("settings.account.actions.delete.button")}
+                    </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <DialogHeader className="!mt-0">
+                    {t("settings.account.actions.delete.confirmTitle")}
+                  </DialogHeader>
+                  <DialogDescription>
+                    {t("settings.account.actions.delete.confirmDescription")}
+                  </DialogDescription>
+                  <DialogFooter>
+                    <Button
+                      variant="destructive"
+                      onClick={deleteExec}
+                      type="submit"
+                    >
+                      {t("settings.account.actions.delete.confirmButton")}
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+            </Dialog>
+        </CardFooter>
+      </Card>
     </div>
   );
 }
