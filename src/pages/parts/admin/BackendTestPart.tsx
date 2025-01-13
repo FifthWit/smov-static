@@ -2,12 +2,20 @@ import { useState } from "react";
 import { useAsyncFn } from "react-use";
 
 import { MetaResponse, getBackendMeta } from "@/backend/accounts/meta";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { Icon, Icons } from "@/components/Icon";
 import { Box } from "@/components/layout/Box";
 import { Divider } from "@/components/utils/Divider";
 import { Heading2 } from "@/components/utils/Text";
 import { conf } from "@/setup/config";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 
 export function BackendTestPart() {
   const backendUrl = conf().BACKEND_URL;
@@ -61,11 +69,12 @@ export function BackendTestPart() {
   }, [setStatus]);
 
   return (
-    <>
-      <Heading2 className="mb-8 mt-12">Backend API test</Heading2>
-      <Box>
-        <div>
-          <div className="flex-1">
+      <Card>
+        <CardHeader>
+            <CardTitle>Backend API test</CardTitle>
+            <CardDescription>Validate your backend is properly working</CardDescription>
+        </CardHeader>
+        <CardContent>
             {status.hasTested && status.success ? (
               <>
                 <p>
@@ -95,9 +104,8 @@ export function BackendTestPart() {
                 <Divider />
               </>
             ) : null}
-          </div>
-        </div>
-        <div className="w-full flex gap-6 justify-between items-center">
+        </CardContent>
+        <CardFooter className="flex justify-between items-center">
           {!status.hasTested ? (
             <p>Run the test to validate backend</p>
           ) : status.success ? (
@@ -110,26 +118,23 @@ export function BackendTestPart() {
             </p>
           ) : (
             <div>
-              <p className="text-foreground font-bold w-full mb-3 flex items-center gap-1">
+              <p className="text-foreground font-bold underline w-full mb-3 flex items-center gap-1">
                 <Icon
                   icon={Icons.CIRCLE_EXCLAMATION}
-                  className="text-video-scraping-error mr-2"
+                  className="text-destructive mr-2"
                 />
                 Backend is not working
               </p>
-              <p>{status.errorText}</p>
+              <p className="text-destructive">ERROR: {status.errorText}</p>
             </div>
           )}
           <Button
-            theme="purple"
-            loading={testState.loading}
             className="whitespace-nowrap"
             onClick={runTests}
           >
             Test backend
           </Button>
-        </div>
-      </Box>
-    </>
+        </CardFooter>
+      </Card>
   );
 }
