@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { getAllProviders, getProviders } from "@/backend/providers/providers";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { Toggle } from "@/components/buttons/Toggle";
 import { FlagIcon } from "@/components/FlagIcon";
 import { Dropdown } from "@/components/form/Dropdown";
@@ -58,7 +58,7 @@ export function PreferencesPart(props: {
         <p className="text-foreground font-bold mb-3">
           {t("settings.preferences.language")}
         </p>
-        <p className="max-w-[20rem] font-medium">
+        <p className="max-w-[20rem] font-medium text-muted-foreground">
           {t("settings.preferences.languageDescription")}
         </p>
         <Dropdown
@@ -72,12 +72,12 @@ export function PreferencesPart(props: {
         <p className="text-foreground font-bold mb-3">
           {t("settings.preferences.thumbnail")}
         </p>
-        <p className="max-w-[25rem] font-medium">
+        <p className="max-w-[25rem] font-medium text-muted-foreground">
           {t("settings.preferences.thumbnailDescription")}
         </p>
         <div
           onClick={() => props.setEnableThumbnails(!props.enableThumbnails)}
-          className="bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg"
+          className="text-foreground border border-border hover:border-primary transition-all duration-400 select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg"
         >
           <Toggle enabled={props.enableThumbnails} />
           <p className="flex-1 text-foreground font-bold">
@@ -89,7 +89,7 @@ export function PreferencesPart(props: {
         <p className="text-foreground font-bold mb-3">
           {t("settings.preferences.autoplay")}
         </p>
-        <p className="max-w-[25rem] font-medium">
+        <p className="max-w-[25rem] font-medium text-muted-foreground">
           {t("settings.preferences.autoplayDescription")}
         </p>
         <div
@@ -99,7 +99,7 @@ export function PreferencesPart(props: {
               : null
           }
           className={classNames(
-            "bg-dropdown-background hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
+            "bg-background border border-border hover:border-primary transition-all duration-400 hover:bg-dropdown-hoverBackground select-none my-4 cursor-pointer space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg",
             allowAutoplay
               ? "cursor-pointer opacity-100 pointer-events-auto"
               : "cursor-not-allowed opacity-50 pointer-events-none",
@@ -128,7 +128,7 @@ export function PreferencesPart(props: {
         />
         <Button
           className="max-w-[25rem]"
-          theme="secondary"
+          variant="secondary"
           onClick={() => props.setSourceOrder(allSources.map((s) => s.id))}
         >
           {t("settings.reset")}
