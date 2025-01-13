@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 import { Divider } from "@/components/utils/Divider";
+import { Separator } from "@/components/ui/separator"
 import { Heading2 } from "@/components/utils/Text";
 import { conf } from "@/setup/config";
 import { BACKEND_URL } from "@/setup/constants";
@@ -46,7 +47,7 @@ function ConfigValue(props: { name: string; children?: ReactNode }) {
         <p className="flex-1 font-bold text-foreground pr-5">{props.name}</p>
         <p>{props.children}</p>
       </div>
-      <Divider marginClass="my-3" />
+      <Separator className="my-3" />
     </>
   );
 }
