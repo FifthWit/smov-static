@@ -12,7 +12,7 @@ import { getSessions, updateSession } from "@/backend/accounts/sessions";
 import { updateSettings } from "@/backend/accounts/settings";
 import { editUser } from "@/backend/accounts/user";
 import { getAllProviders } from "@/backend/providers/providers";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { WideContainer } from "@/components/layout/WideContainer";
 import { UserIcons } from "@/components/UserIcon";
 import { Heading1 } from "@/components/utils/Text";
@@ -252,13 +252,10 @@ export function SettingsPage() {
     setBackendUrl,
   ]);
   return (
-    <SubPageLayout>
+    <>
       <PageTitle subpage k="global.pages.settings" />
       <SettingsLayout>
         <div id="settings-account">
-          <Heading1 border className="!mb-0">
-            {t("settings.account.title")}
-          </Heading1>
           {user.account && state.profile.state ? (
             <AccountSettings
               account={user.account}
@@ -321,27 +318,27 @@ export function SettingsPage() {
       <Transition
         animation="fade"
         show={state.changed}
-        className="bg-settings-saveBar-background border-t border-settings-card-border/50 py-4 transition-opacity w-full fixed bottom-0 flex flex-col md:flex-row px-8 items-start md:items-center gap-3"
+        className="bg-background border-t py-4 transition-opacity w-full fixed bottom-0 flex flex-col md:flex-row px-8 items-start md:items-center gap-3"
       >
-        <p className="text-type-danger">{t("settings.unsaved")}</p>
+        <p className="text-destructive">{t("settings.unsaved")}</p>
         <div className="space-x-3 w-full md:w-auto flex">
           <Button
             className="w-full md:w-auto"
-            theme="secondary"
+            variant="secondary"
             onClick={state.reset}
           >
             {t("settings.reset")}
           </Button>
           <Button
             className="w-full md:w-auto"
-            theme="purple"
+            variant="outline"
             onClick={saveChanges}
           >
             {t("settings.save")}
           </Button>
         </div>
       </Transition>
-    </SubPageLayout>
+      </>
   );
 }
 
