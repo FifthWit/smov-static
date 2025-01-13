@@ -24,7 +24,7 @@ export function AuthInputBox(props: {
         onChange={props.onChange}
         placeholder={props.placeholder}
         passwordToggleable={props.passwordToggleable}
-        className="w-full flex-1 bg-authentication-inputBg px-4 py-3 text-search-text focus:outline-none rounded-lg placeholder:text-gray-700"
+        className=""
       />
     </div>
   );
