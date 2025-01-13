@@ -5,9 +5,17 @@ import { useAsyncFn } from "react-use";
 import { SessionResponse } from "@/backend/accounts/auth";
 import { base64ToBuffer, decryptData } from "@/backend/accounts/crypto";
 import { removeSession } from "@/backend/accounts/sessions";
-import { Button } from "@/components/buttons/Button";
+import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/layout/Loading";
-import { SettingsCard } from "@/components/layout/SettingsCard";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+  
 import { SecondaryLabel } from "@/components/text/SecondaryLabel";
 import { Heading2 } from "@/components/utils/Text";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
@@ -30,22 +38,22 @@ export function Device(props: {
   }, [url, token, props.id]);
 
   return (
-    <SettingsCard
-      className="flex justify-between items-center"
-      paddingClass="px-6 py-4"
+    <Card
+      className="w-fit"
     >
-      <div className="font-medium">
-        <SecondaryLabel>
-          {t("settings.account.devices.deviceNameLabel")}
-        </SecondaryLabel>
-        <p className="text-foreground">{props.name}</p>
-      </div>
+        <CardHeader>
+            <CardTitle>
+                  <p className="text-muted-foreground">{t("settings.account.devices.deviceNameLabel")}:</p>{props.name}
+            </CardTitle>
+        </CardHeader>
       {!props.isCurrent ? (
-        <Button theme="danger" loading={result.loading} onClick={exec}>
-          {t("settings.account.devices.removeDevice")}
-        </Button>
+        <CardFooter>
+            <Button variant="destructive" onClick={exec}>
+              {t("settings.account.devices.removeDevice")}
+            </Button>
+        </CardFooter>
       ) : null}
-    </SettingsCard>
+    </Card>
   );
 }
 
@@ -88,7 +96,7 @@ export function DeviceListPart(props: {
       ) : props.loading ? (
         <Loading />
       ) : (
-        <div className="space-y-5">
+        <div className="flex flex-wrap flex-grow gap-4">
           {deviceListSorted.map((session) => (
             <Device
               name={session.name}
