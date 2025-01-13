@@ -4,16 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* copied from realtimecolors.com
---text: hsl(198, 94%, 93%);
---background: hsl(201, 89%, 7%);
---primary: hsl(195, 100%, 75%);
---secondary: hsl(236, 28%, 31%);
---accent: hsl(249, 28%, 56%);
-https://www.realtimecolors.com/?colors=dcf4fe-021722-80dfff-393c65-786eae&fonts=Noto%20Sans%20Display-Noto%20Sans%20Display
-*/
-
-
 @layer base {
     :root {
         --background: 199 90% 4%;
@@ -30,7 +20,7 @@ https://www.realtimecolors.com/?colors=dcf4fe-021722-80dfff-393c65-786eae&fonts=
         --muted-foreground: 218, 20%, 48%;
         --accent: 198 36% 21%;
         --accent-foreground: 0 0% 98%;
-        --destructive: 0 99% 63%;
+        --destructive: 0 80% 50%;
         --destructive-foreground: 0 0% 98%;
         --border: 260 18% 20%;
         --input: 260 18% 20%;
