@@ -8,6 +8,8 @@ import { Menu } from "@/components/player/internals/ContextMenu";
 import { useOverlayRouter } from "@/hooks/useOverlayRouter";
 import { useProgressBar } from "@/hooks/useProgressBar";
 import { useSubtitleStore } from "@/stores/subtitles";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export function ColorOption(props: {
   color: string;
@@ -15,10 +17,11 @@ export function ColorOption(props: {
   onClick: () => void;
 }) {
   return (
-    <button
+    <Button
+    variant="outline"
       type="button"
       className={classNames(
-        "tabbable p-1.5 bg-video-context-buttonFocus rounded transition-colors duration-100",
+        "tabbable p-1.5 rounded transition-colors duration-100 mx-1",
         props.active ? "bg-opacity-100" : "bg-opacity-0 cursor-pointer",
       )}
       onClick={props.onClick}
@@ -31,7 +34,7 @@ export function ColorOption(props: {
           <Icon className="text-sm text-black" icon={Icons.CHECKMARK} />
         ) : null}
       </div>
-    </button>
+    </Button>
   );
 }
 
@@ -79,7 +82,7 @@ export function CaptionSetting(props: {
     };
   }, [isFocused]);
 
-  const inputClasses = `tabbable py-1 bg-video-context-inputBg rounded text-foreground cursor-text ${
+  const inputClasses = `tabbable py-1 bg-input rounded text-foreground cursor-text ${
     props.controlButtons ? "text-center px-4 w-24" : "px-3 text-left w-20"
   }`;
   const arrowButtonClasses =
@@ -96,16 +99,17 @@ export function CaptionSetting(props: {
             onMouseDown={dragMouseDown}
             onTouchStart={dragMouseDown}
           >
+            {/* empty progress bar */}
             <div
               dir="ltr"
               className={[
-                "relative w-full h-1 bg-video-context-slider bg-opacity-25 rounded-full transition-[height] duration-100 group-hover/progress:h-1.5",
+                "relative w-full h-1 bg-muted bg-opacity-25 rounded-full transition-[height] duration-100 group-hover/progress:h-1.5",
                 dragging ? "!h-1.5" : "",
               ].join(" ")}
             >
               {/* Actual progress bar */}
               <div
-                className="absolute top-0 left-0 h-full rounded-full bg-video-context-sliderFilled flex justify-end items-center"
+                className="absolute top-0 left-0 h-full rounded-full bg-primary flex justify-end items-center"
                 style={{
                   width: `${
                     Math.max(
@@ -120,7 +124,7 @@ export function CaptionSetting(props: {
               >
                 <div
                   className={[
-                    "w-[1rem] min-w-[1rem] h-[1rem] border-[4px] border-video-context-sliderFilled rounded-full transform translate-x-1/2 bg-white transition-[transform] duration-100",
+                    "w-[1rem] min-w-[1rem] h-[1rem] border-[4px] border-primary rounded-full transform translate-x-1/2 bg-white transition-[transform] duration-100",
                   ].join(" ")}
                 />
               </div>
@@ -129,7 +133,7 @@ export function CaptionSetting(props: {
         </div>
         <div>
           {isFocused ? (
-            <input
+            <Input
               className={inputClasses}
               value={inputValue}
               autoFocus
@@ -160,7 +164,8 @@ export function CaptionSetting(props: {
                 setIsFocused(true);
               }}
             >
-              <button
+              <Button
+              variant="outline"
                 className={classNames(
                   inputClasses,
                   props.controlButtons ? "relative" : undefined,
@@ -171,7 +176,7 @@ export function CaptionSetting(props: {
                 {textTransformer(
                   props.value.toFixed(props.decimalsAllowed ?? 0),
                 )}
-              </button>
+              </Button>
               {props.controlButtons ? (
                 <>
                   <div className="actions w-6 h-full absolute left-0 top-0 grid grid-cols-1 items-center justify-center">
