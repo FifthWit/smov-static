@@ -46,7 +46,7 @@ function SortableItem(props: { item: Item }) {
       {...attributes}
       {...listeners}
       className={classNames(
-        "bg-input border border-border hover:bg-dropdown-hoverBackground select-none space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg touch-manipulation",
+        "bg-input border border-border hover:bg-input/70 duration-200 transition-all select-none space-x-3 flex items-center max-w-[25rem] py-3 px-4 rounded-lg touch-manipulation",
         props.item.disabled && "opacity-50",
         transform ? "cursor-grabbing" : "cursor-grab",
       )}
