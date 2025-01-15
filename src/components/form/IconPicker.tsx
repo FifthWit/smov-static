@@ -30,10 +30,10 @@ export function IconPicker(props: {
               type="button"
               tabIndex={0}
               className={classNames(
-                "w-full h-10 rounded flex justify-center items-center text-foreground pointer border-2 border-opacity-10 cursor-pointer",
+                "w-full h-10 rounded flex justify-center items-center text-foreground pointer border border-opacity-10 cursor-pointer",
                 props.value === icon
-                  ? "bg-buttons-purple border-white"
-                  : "bg-authentication-inputBg border-transparent",
+                  ? "bg-primary border-white"
+                  : "bg-secondary border-transparent",
               )}
               onClick={() => props.onInput(icon)}
               key={icon}
