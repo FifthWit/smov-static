@@ -17,9 +17,7 @@ export function IconPatch(props: IconPatchProps) {
   const transparentClasses = props.transparent
     ? "bg-opacity-0 hover:bg-opacity-50"
     : "";
-  const activeClasses = props.active
-    ? "bg-background/50 text-foreground"
-    : "";
+  const activeClasses = props.active ? "bg-background/50 text-foreground" : "";
   const sizeClasses = props.downsized ? "h-10 w-10" : "h-12 w-12";
 
   return (

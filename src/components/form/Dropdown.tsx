@@ -46,9 +46,7 @@ export function Dropdown(props: DropdownProps) {
                   <Listbox.Option
                     className={({ active }) =>
                       `cursor-pointer flex gap-4 items-center relative select-none py-3 pl-4 pr-4 ${
-                        active
-                          ? "bg-accent text-primary"
-                          : "text-foreground"
+                        active ? "bg-accent text-primary" : "text-foreground"
                       }`
                     }
                     key={opt.id}

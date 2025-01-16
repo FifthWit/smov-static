@@ -16,7 +16,13 @@ export interface AvatarProps {
   className?: string;
 }
 
-export function Avatar({className, profile, sizeClass, iconClass, bottom}: AvatarProps) {
+export function Avatar({
+  className,
+  profile,
+  sizeClass,
+  iconClass,
+  bottom,
+}: AvatarProps) {
   return (
     <div className={cn("relative inline-block", className)}>
       <div
@@ -28,10 +34,7 @@ export function Avatar({className, profile, sizeClass, iconClass, bottom}: Avata
           background: `linear-gradient(to bottom right, ${profile.colorA}, ${profile.colorB})`,
         }}
       >
-        <UserIcon
-          className={iconClass}
-          icon={profile.icon as any}
-        />
+        <UserIcon className={iconClass} icon={profile.icon as any} />
       </div>
       {bottom ? (
         <div className="absolute bottom-0 left-1/2 transform translate-y-1/2 -translate-x-1/2">
@@ -43,14 +46,20 @@ export function Avatar({className, profile, sizeClass, iconClass, bottom}: Avata
 }
 
 interface UserAvatarProps {
-    sizeClass?: string;
-    iconClass?: string;
-    bottom?: React.ReactNode;
-    withName?: boolean;
-    className?: string;
+  sizeClass?: string;
+  iconClass?: string;
+  bottom?: React.ReactNode;
+  withName?: boolean;
+  className?: string;
 }
 
-export function UserAvatar({ sizeClass, iconClass, bottom, withName, className}: UserAvatarProps) {
+export function UserAvatar({
+  sizeClass,
+  iconClass,
+  bottom,
+  withName,
+  className,
+}: UserAvatarProps) {
   const auth = useAuthStore();
 
   const bufferSeed = useMemo(

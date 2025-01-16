@@ -36,13 +36,10 @@ export function StatusCircle(props: StatusCircleProps | StatusCircleLoading) {
           "p-0.5 border-current border-[3px] rounded-full h-6 w-6 relative transition-colors":
             true,
           "text-primary": props.type === "loading",
-          "text-muted-foreground text-opacity-50":
-            props.type === "waiting",
-          "text-destructive bg-transparent":
-            props.type === "error",
+          "text-muted-foreground text-opacity-50": props.type === "waiting",
+          "text-destructive bg-transparent": props.type === "error",
           "text-green-500 bg-background": props.type === "success",
-          "text-muted-foreground bg-background":
-            props.type === "noresult",
+          "text-muted-foreground bg-background": props.type === "noresult",
         },
         props.className,
       )}

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { forwardRef, useState } from "react";
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/input";
 import { Icon, Icons } from "../Icon";
 
 export interface TextInputControlPropsNoLabel {

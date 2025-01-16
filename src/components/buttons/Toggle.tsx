@@ -7,7 +7,7 @@ export function Toggle(props: { onClick?: () => void; enabled?: boolean }) {
       onClick={props.onClick}
       className={classNames(
         "w-11 h-6 p-1 rounded-full grid transition-colors duration-100 group/toggle tabbable",
-        props.enabled ? "bg-primary" : "bg-input"
+        props.enabled ? "bg-primary" : "bg-input",
       )}
     >
       <div className="relative w-full h-full">

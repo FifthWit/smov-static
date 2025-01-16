@@ -9,7 +9,10 @@ interface WideContainerProps {
 export function WideContainer(props: WideContainerProps) {
   return (
     <div
-      className={cn(`mx-[100px]  px-8 max-w-[calc(100vw-256px)]`, props.classNames)}
+      className={cn(
+        `mx-[100px]  px-8 max-w-[calc(100vw-256px)]`,
+        props.classNames,
+      )}
     >
       {props.children}
     </div>

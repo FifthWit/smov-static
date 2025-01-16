@@ -8,14 +8,14 @@ import { removeSession } from "@/backend/accounts/sessions";
 import { Button } from "@/components/ui/button";
 import { Loading } from "@/components/layout/Loading";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
-  
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 import { SecondaryLabel } from "@/components/text/SecondaryLabel";
 import { Heading2 } from "@/components/utils/Text";
 import { useBackendUrl } from "@/hooks/auth/useBackendUrl";
@@ -38,19 +38,20 @@ export function Device(props: {
   }, [url, token, props.id]);
 
   return (
-    <Card
-      className="w-fit"
-    >
-        <CardHeader>
-            <CardTitle>
-                  <p className="text-muted-foreground">{t("settings.account.devices.deviceNameLabel")}:</p>{props.name}
-            </CardTitle>
-        </CardHeader>
+    <Card className="w-fit">
+      <CardHeader>
+        <CardTitle>
+          <p className="text-muted-foreground">
+            {t("settings.account.devices.deviceNameLabel")}:
+          </p>
+          {props.name}
+        </CardTitle>
+      </CardHeader>
       {!props.isCurrent ? (
         <CardFooter>
-            <Button variant="destructive" onClick={exec}>
-              {t("settings.account.devices.removeDevice")}
-            </Button>
+          <Button variant="destructive" onClick={exec}>
+            {t("settings.account.devices.removeDevice")}
+          </Button>
         </CardFooter>
       ) : null}
     </Card>

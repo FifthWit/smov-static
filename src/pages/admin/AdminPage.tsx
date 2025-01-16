@@ -12,13 +12,15 @@ export function AdminPage() {
     <SubPageLayout>
       <ThinContainer>
         <Heading1>Admin tools</Heading1>
-        <p className="text-muted-foreground">Silly tools used test sudo-flix! ૮₍´˶• . • ⑅ ₎ა</p>
+        <p className="text-muted-foreground">
+          Silly tools used test sudo-flix! ૮₍´˶• . • ⑅ ₎ა
+        </p>
 
         <div className="flex flex-col gap-4">
-            <ConfigValuesPart />
-            <BackendTestPart />
-            <WorkerTestPart />
-            <TMDBTestPart />
+          <ConfigValuesPart />
+          <BackendTestPart />
+          <WorkerTestPart />
+          <TMDBTestPart />
         </div>
       </ThinContainer>
     </SubPageLayout>

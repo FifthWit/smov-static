@@ -32,7 +32,9 @@ function Base(props: {
 }
 
 function Child(props: { className?: string; children?: ReactNode }) {
-  return <div className={cn("relative", props.className)}>{props.children}</div>;
+  return (
+    <div className={cn("relative", props.className)}>{props.children}</div>
+  );
 }
 
 function Light(props: FlareProps) {

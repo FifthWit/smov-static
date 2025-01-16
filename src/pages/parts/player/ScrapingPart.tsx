@@ -162,9 +162,7 @@ export function ScrapingPartInterruptButton() {
 
   return (
     <div className="flex gap-4">
-      <Button asChild
-        className="mt-6 md:px-17 p-3"
-      >
+      <Button asChild className="mt-6 md:px-17 p-3">
         <Link to="/">{t("notFound.goHome")}</Link>
       </Button>
       <Button

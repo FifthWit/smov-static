@@ -67,13 +67,13 @@ export function HeroPart({ setIsSticky, searchParams }: HeroPartProps) {
           <HeroTitle className="mx-auto max-w-md">{title}</HeroTitle>
         </div>
         <div className="relative h-20 z-1">
-            <SearchBarInput
-              ref={inputRef}
-              onChange={setSearch}
-              value={search}
-              onUnFocus={setSearchUnFocus}
-              placeholder={placeholder ?? ""}
-            />
+          <SearchBarInput
+            ref={inputRef}
+            onChange={setSearch}
+            value={search}
+            onUnFocus={setSearchUnFocus}
+            placeholder={placeholder ?? ""}
+          />
         </div>
       </div>
     </ThinContainer>

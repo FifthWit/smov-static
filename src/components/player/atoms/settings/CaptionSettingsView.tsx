@@ -18,7 +18,7 @@ export function ColorOption(props: {
 }) {
   return (
     <Button
-    variant="outline"
+      variant="outline"
       type="button"
       className={classNames(
         "tabbable p-1.5 rounded transition-colors duration-100 mx-1",
@@ -165,7 +165,7 @@ export function CaptionSetting(props: {
               }}
             >
               <Button
-              variant="outline"
+                variant="outline"
                 className={classNames(
                   inputClasses,
                   props.controlButtons ? "relative" : undefined,

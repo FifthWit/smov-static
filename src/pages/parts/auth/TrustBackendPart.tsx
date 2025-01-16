@@ -44,7 +44,9 @@ export function TrustBackendPart(props: TrustBackendPartProps) {
   if (result.value)
     cardContent = (
       <>
-        <h3 className="text-foreground font-bold text-lg">{result.value.name}</h3>
+        <h3 className="text-foreground font-bold text-lg">
+          {result.value.name}
+        </h3>
         {result.value.description ? (
           <p className="text-center">{result.value.description}</p>
         ) : null}

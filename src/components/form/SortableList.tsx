@@ -51,7 +51,9 @@ function SortableItem(props: { item: Item }) {
         transform ? "cursor-grabbing" : "cursor-grab",
       )}
     >
-      <span className="flex-1 text-foreground font-bold">{props.item.name}</span>
+      <span className="flex-1 text-foreground font-bold">
+        {props.item.name}
+      </span>
       {props.item.disabled && <Icon icon={Icons.WARNING} />}
       <Icon icon={Icons.MENU} />
     </div>

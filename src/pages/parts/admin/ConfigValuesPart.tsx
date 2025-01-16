@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 
 import { Divider } from "@/components/utils/Divider";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
 import { Heading2 } from "@/components/utils/Text";
 import { conf } from "@/setup/config";
 import { BACKEND_URL } from "@/setup/constants";

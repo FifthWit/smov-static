@@ -8,13 +8,13 @@ import { Icon, Icons } from "@/components/Icon";
 import { Heading2 } from "@/components/utils/Text";
 import { getProxyUrls } from "@/utils/proxyUrls";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export function WorkerItem(props: {
   name: string;
@@ -109,79 +109,77 @@ export function WorkerTestPart() {
   }, [workerList, setWorkerState]);
 
   return (
-      <Card>
-        <CardHeader>
-            <CardTitle>
-                Test Workers
-            </CardTitle>
-            {workerList.map((v, i) => {
-              const s = workerState.find((segment) => segment.id === v.id);
-              const name = `Worker ${i + 1}`;
-              if (!s) return <WorkerItem name={name} key={v.id} />;
-              if (s.status === "error")
-                return (
-                  <WorkerItem
-                    name={name}
-                    errored
-                    key={v.id}
-                    errorText={s.error?.toString()}
-                  />
-                );
-              if (s.status === "success")
-                return <WorkerItem name={name} url={v.url} success key={v.id} />;
-              return <WorkerItem name={name} key={v.id} />;
-            })}
-            <CardDescription>
-                Test the workers to see if they are working correctly
-            </CardDescription>
-        </CardHeader>
-        <CardFooter className="flex justify-end items-center">
-          {buttonClicked ? (
-            workerState.every((worker) => worker.status === "success") ? (
-              <p>
-                All workers have passed the test!{" "}
-                <span className="font-bold">٩(ˊᗜˋ*)و♡</span>
-              </p>
-            ) : (
-              <div>
-                <div className="text-right">
-                  <p>
-                    Some workers have failed the test...{" "}
-                    <span className="font-bold">(•᷄∩•᷅ )</span>
-                  </p>
-                  {/* Show button if tests fail */}
-                  <div className="flex justify-end">
-                    <Button
-                      onClick={async (event) => {
-                        event.preventDefault();
-                        setButtonDisabled(true);
-                        await runTests();
-                        setButtonClicked(true);
-                        setTimeout(() => setButtonDisabled(false), 250);
-                      }}
-                      disabled={buttonDisabled}
-                    >
-                      Test workers
-                    </Button>
-                  </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Test Workers</CardTitle>
+        {workerList.map((v, i) => {
+          const s = workerState.find((segment) => segment.id === v.id);
+          const name = `Worker ${i + 1}`;
+          if (!s) return <WorkerItem name={name} key={v.id} />;
+          if (s.status === "error")
+            return (
+              <WorkerItem
+                name={name}
+                errored
+                key={v.id}
+                errorText={s.error?.toString()}
+              />
+            );
+          if (s.status === "success")
+            return <WorkerItem name={name} url={v.url} success key={v.id} />;
+          return <WorkerItem name={name} key={v.id} />;
+        })}
+        <CardDescription>
+          Test the workers to see if they are working correctly
+        </CardDescription>
+      </CardHeader>
+      <CardFooter className="flex justify-end items-center">
+        {buttonClicked ? (
+          workerState.every((worker) => worker.status === "success") ? (
+            <p>
+              All workers have passed the test!{" "}
+              <span className="font-bold">٩(ˊᗜˋ*)و♡</span>
+            </p>
+          ) : (
+            <div>
+              <div className="text-right">
+                <p>
+                  Some workers have failed the test...{" "}
+                  <span className="font-bold">(•᷄∩•᷅ )</span>
+                </p>
+                {/* Show button if tests fail */}
+                <div className="flex justify-end">
+                  <Button
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      setButtonDisabled(true);
+                      await runTests();
+                      setButtonClicked(true);
+                      setTimeout(() => setButtonDisabled(false), 250);
+                    }}
+                    disabled={buttonDisabled}
+                  >
+                    Test workers
+                  </Button>
                 </div>
               </div>
-            )
-          ) : (
-            <Button
-              onClick={async (event) => {
-                event.preventDefault();
-                setButtonDisabled(true);
-                await runTests();
-                setButtonClicked(true);
-                setTimeout(() => setButtonDisabled(false), 5000); // Turn the button back on
-              }}
-              disabled={buttonDisabled}
-            >
-              Test workers
-            </Button>
-          )}
-        </CardFooter>
-      </Card>
+            </div>
+          )
+        ) : (
+          <Button
+            onClick={async (event) => {
+              event.preventDefault();
+              setButtonDisabled(true);
+              await runTests();
+              setButtonClicked(true);
+              setTimeout(() => setButtonDisabled(false), 5000); // Turn the button back on
+            }}
+            disabled={buttonDisabled}
+          >
+            Test workers
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 }

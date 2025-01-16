@@ -74,7 +74,9 @@ function MediaCardContent({
 
   return (
     <Flare.Base
-      className={cn(`group -m-[0.705em] rounded-xl transition-colors duration-300 focus:relative focus:z-10 bg-opacity-0`)}
+      className={cn(
+        `group -m-[0.705em] rounded-xl transition-colors duration-300 focus:relative focus:z-10 bg-opacity-0`,
+      )}
       tabIndex={canLink ? 0 : -1}
       onKeyUp={(e) => e.key === "Enter" && e.currentTarget.click()}
     >

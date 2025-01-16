@@ -44,7 +44,7 @@ function SettingsLayout(props: { children: React.ReactNode }) {
 
   return (
     <WideContainer classNames="overflow-visible">
-        {props.children}
+      {props.children}
     </WideContainer>
   );
 }
@@ -338,7 +338,7 @@ export function SettingsPage() {
           </Button>
         </div>
       </Transition>
-      </>
+    </>
   );
 }
 

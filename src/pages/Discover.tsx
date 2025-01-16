@@ -553,7 +553,9 @@ export function Discover() {
           ))}
           <div className="flex items-center">
             <Divider marginClass="mr-5" />
-            <h1 className="text-4xl font-bold text-foreground mx-auto">Shows</h1>
+            <h1 className="text-4xl font-bold text-foreground mx-auto">
+              Shows
+            </h1>
             <Divider marginClass="ml-5" />
           </div>
           {tvCategories.map((category) => (

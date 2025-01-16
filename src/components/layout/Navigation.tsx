@@ -11,7 +11,6 @@ import { BlurEllipsis } from "@/pages/layouts/SubPageLayout";
 import { conf } from "@/setup/config";
 import { useBannerSize } from "@/stores/banner";
 
-
 export interface NavigationProps {
   bg?: boolean;
   noLightbar?: boolean;
@@ -37,8 +36,7 @@ export function Navigation(props: NavigationProps) {
           style={{
             top: `${bannerHeight}px`,
           }}
-        >
-        </div>
+        ></div>
       ) : null}
 
       {/* backgrounds - these are seperate because of z-index issues */}
