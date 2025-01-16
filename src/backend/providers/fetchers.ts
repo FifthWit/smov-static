@@ -75,7 +75,7 @@ export function makeExtensionFetcher() {
       body: convertBodyToObject(ops.body),
       bodyType: getBodyTypeFromBody(ops.body),
     });
-    if (!result?.success) throw new Error(`extension error: ${result?.error}`);
+    if (!result?.success) throw new Error(`extension error: ${result?.['error']}`);
     const res = result.response;
     return {
       body: res.body,
