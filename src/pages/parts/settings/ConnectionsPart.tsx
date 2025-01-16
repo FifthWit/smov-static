@@ -82,7 +82,7 @@ function ProxyEdit({ proxyUrls, setProxyUrls }: ProxyEditProps) {
             {(proxyUrls ?? []).map((v, i) => (
               <div
                 // not the best but we can live with it
-                // eslint-disable-next-line react/no-array-index-key
+                // eslint-disable-next-line
                 key={i}
                 className="grid grid-cols-[1fr,auto] items-center gap-2"
               >

@@ -41,7 +41,7 @@ function RefreshBar() {
   );
 }
 
-export function ExtensionStatus(props: {
+export function ExtensionStatusComponent(props: {
   status: ExtensionStatus;
   loading: boolean;
   showHelp?: boolean;
@@ -139,7 +139,7 @@ function ChromeExtensionPage(props: ExtensionPageProps) {
         </Link>
       ) : null}
 
-      <ExtensionStatus status={props.status} loading={props.loading} />
+      <ExtensionStatusComponent status={props.status} loading={props.loading} />
     </>
   );
 }
@@ -161,7 +161,11 @@ function FirefoxExtensionPage(props: ExtensionPageProps) {
         </Link>
       ) : null}
 
-      <ExtensionStatus status={props.status} loading={props.loading} showHelp />
+      <ExtensionStatusComponent
+        status={props.status}
+        loading={props.loading}
+        showHelp
+      />
     </>
   );
 }
@@ -210,7 +214,11 @@ function UnknownExtensionPage(props: ExtensionPageProps) {
         ) : null}
       </div>
 
-      <ExtensionStatus status={props.status} loading={props.loading} showHelp />
+      <ExtensionStatusComponent
+        status={props.status}
+        loading={props.loading}
+        showHelp
+      />
     </>
   );
 }

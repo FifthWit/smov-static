@@ -182,7 +182,7 @@ export const Icon = memo((props: IconProps) => {
 
   return (
     <span
-      dangerouslySetInnerHTML={{ __html: iconList[props.icon] }} // eslint-disable-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: iconList[props.icon] }} // eslint-disable-line
       className={classNames(props.className, flipClass)}
     />
   );

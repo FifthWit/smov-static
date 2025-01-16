@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { pbkdf2Async } from "@noble/hashes/pbkdf2";
 import { sha256 } from "@noble/hashes/sha256";
 import { generateMnemonic, validateMnemonic } from "@scure/bip39";

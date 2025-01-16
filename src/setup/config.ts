@@ -81,8 +81,6 @@ function getKeyValue(key: keyof Config): string | undefined {
   return coerceUndefined(env[key]) ?? coerceUndefined(windowValue) ?? undefined;
 }
 
-function getKey(key: keyof Config): string | null;
-function getKey(key: keyof Config, defaultString: string): string;
 function getKey(key: keyof Config, defaultString?: string): string | null {
   return getKeyValue(key)?.toString() ?? defaultString ?? null;
 }

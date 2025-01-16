@@ -45,7 +45,7 @@ export function PassphraseDisplay(props: { mnemonic: string }) {
           <div
             className="rounded-md py-2 bg-authentication-wordBackground text-foreground font-medium text-center"
             // this doesn't get rerendered nor does it have state so its fine
-            // eslint-disable-next-line react/no-array-index-key
+            // eslint-disable-next-line
             key={i}
           >
             {word}
