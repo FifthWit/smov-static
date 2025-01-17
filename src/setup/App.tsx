@@ -122,7 +122,7 @@ function App() {
                         !window.location.pathname.includes("/media/tmdb-"),
                 })}
             >
-                {window.location.pathname.includes("/media/") ? null : (
+                {window.location.href.includes("/media/") ? null : (
                     <SidebarTrigger className="z-[10] m-3 aspect-square scale-150" />
                 )}
                 <Layout>
