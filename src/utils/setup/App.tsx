@@ -1,12 +1,12 @@
 import { ReactElement, Suspense, lazy, useEffect, useState } from "react";
 import { lazyWithPreload } from "react-lazy-with-preload";
 import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-  useParams,
+    Navigate,
+    Route,
+    Routes,
+    useLocation,
+    useNavigate,
+    useParams,
 } from "react-router-dom";
 
 import { convertLegacyUrl, isLegacyUrl } from "@/backend/metadata/getmeta";
@@ -39,145 +39,154 @@ PlayerView.preload();
 SettingsPage.preload();
 
 function LegacyUrlView({ children }: { children: ReactElement }) {
-  const location = useLocation();
-  const navigate = useNavigate();
+    const location = useLocation();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const url = location.pathname;
-    if (!isLegacyUrl(url)) return;
-    convertLegacyUrl(location.pathname).then((convertedUrl) => {
-      navigate(convertedUrl ?? "/", { replace: true });
-    });
-  }, [location.pathname, navigate]);
+    useEffect(() => {
+        const url = location.pathname;
+        if (!isLegacyUrl(url)) return;
+        convertLegacyUrl(location.pathname).then((convertedUrl) => {
+            navigate(convertedUrl ?? "/", { replace: true });
+        });
+    }, [location.pathname, navigate]);
 
-  if (isLegacyUrl(location.pathname)) return null;
-  return children;
+    if (isLegacyUrl(location.pathname)) return null;
+    return children;
 }
 
 function QuickSearch() {
-  const { query } = useParams<{ query: string }>();
-  const navigate = useNavigate();
+    const { query } = useParams<{ query: string }>();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (query) {
-      generateQuickSearchMediaUrl(query).then((url) => {
-        navigate(url ?? "/", { replace: true });
-      });
-    } else {
-      navigate("/", { replace: true });
-    }
-  }, [query, navigate]);
+    useEffect(() => {
+        if (query) {
+            generateQuickSearchMediaUrl(query).then((url) => {
+                navigate(url ?? "/", { replace: true });
+            });
+        } else {
+            navigate("/", { replace: true });
+        }
+    }, [query, navigate]);
 
-  return null;
+    return null;
 }
 
 function QueryView() {
-  const { query } = useParams<{ query: string }>();
-  const navigate = useNavigate();
+    const { query } = useParams<{ query: string }>();
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    if (query) {
-      navigate(`/browse/${query}`, { replace: true });
-    } else {
-      navigate("/", { replace: true });
-    }
-  }, [query, navigate]);
+    useEffect(() => {
+        if (query) {
+            navigate(`/browse/${query}`, { replace: true });
+        } else {
+            navigate("/", { replace: true });
+        }
+    }, [query, navigate]);
 
-  return null;
+    return null;
 }
 
 function App() {
-  useHistoryListener();
-  useOnlineListener();
-  const maintenance = false; // Changing to true shows maintenance page
-  const [showDowntime, setShowDowntime] = useState(maintenance);
+    useHistoryListener();
+    useOnlineListener();
+    const maintenance = false; // Changing to true shows maintenance page
+    const [showDowntime, setShowDowntime] = useState(maintenance);
 
-  const handleButtonClick = () => {
-    setShowDowntime(false);
-  };
+    const handleButtonClick = () => {
+        setShowDowntime(false);
+    };
 
-  useEffect(() => {
-    const sessionToken = sessionStorage.getItem("downtimeToken");
-    if (!sessionToken && maintenance) {
-      setShowDowntime(true);
-      sessionStorage.setItem("downtimeToken", "true");
-    }
-  }, [setShowDowntime, maintenance]);
+    useEffect(() => {
+        const sessionToken = sessionStorage.getItem("downtimeToken");
+        if (!sessionToken && maintenance) {
+            setShowDowntime(true);
+            sessionStorage.setItem("downtimeToken", "true");
+        }
+    }, [setShowDowntime, maintenance]);
 
-  return (
-    <Layout>
-      <LanguageProvider />
-      {!showDowntime && (
-        <Routes>
-          {/* functional routes */}
-          <Route path="/s/:query" element={<QuickSearch />} />
-          <Route path="/search/:type" element={<Navigate to="/browse" />} />
-          <Route path="/search/:type/:query?" element={<QueryView />} />
-          {/* pages */}
-          <Route
-            path="/media/:media"
-            element={
-              <LegacyUrlView>
-                <Suspense fallback={null}>
-                  <PlayerView />
-                </Suspense>
-              </LegacyUrlView>
-            }
-          />
-          <Route
-            path="/media/:media/:season/:episode"
-            element={
-              <LegacyUrlView>
-                <Suspense fallback={null}>
-                  <PlayerView />
-                </Suspense>
-              </LegacyUrlView>
-            }
-          />
-          <Route path="/browse/:query?" element={<HomePage />} />
-          <Route path="/" element={<HomePage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/onboarding" element={<OnboardingPage />} />
-          <Route
-            path="/onboarding/extension"
-            element={<OnboardingExtensionPage />}
-          />
-          <Route path="/onboarding/proxy" element={<OnboardingProxyPage />} />
-          {shouldHaveDmcaPage() ? (
-            <Route path="/dmca" element={<DmcaPage />} />
-          ) : null}
-          {/* Support page */}
-          <Route path="/support" element={<SupportPage />} />
-          {/* Discover page */}
-          <Route path="/discover" element={<Discover />} />
-          {/* Settings page */}
-          <Route
-            path="/settings"
-            element={
-              <Suspense fallback={null}>
-                <SettingsPage />
-              </Suspense>
-            }
-          />
-          {/* admin routes */}
-          <Route path="/admin" element={<AdminPage />} />
-          {/* other */}
-          <Route path="/dev" element={<DeveloperPage />} />
-          <Route path="/dev/video" element={<VideoTesterView />} />
-          {/* developer routes that can abuse workers are disabled in production */}
-          {process.env.NODE_ENV === "development" ? (
-            <Route path="/dev/test" element={<TestView />} />
-          ) : null}
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      )}
-      {showDowntime && (
-        <MaintenancePage onHomeButtonClick={handleButtonClick} />
-      )}
-    </Layout>
-  );
+    return (
+        <Layout>
+            <LanguageProvider />
+            {!showDowntime && (
+                <Routes>
+                    {/* functional routes */}
+                    <Route path="/s/:query" element={<QuickSearch />} />
+                    <Route
+                        path="/search/:type"
+                        element={<Navigate to="/browse" />}
+                    />
+                    <Route
+                        path="/search/:type/:query?"
+                        element={<QueryView />}
+                    />
+                    {/* pages */}
+                    <Route
+                        path="/media/:media"
+                        element={
+                            <LegacyUrlView>
+                                <Suspense fallback={null}>
+                                    <PlayerView />
+                                </Suspense>
+                            </LegacyUrlView>
+                        }
+                    />
+                    <Route
+                        path="/media/:media/:season/:episode"
+                        element={
+                            <LegacyUrlView>
+                                <Suspense fallback={null}>
+                                    <PlayerView />
+                                </Suspense>
+                            </LegacyUrlView>
+                        }
+                    />
+                    <Route path="/browse/:query?" element={<HomePage />} />
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/register" element={<RegisterPage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/about" element={<AboutPage />} />
+                    <Route path="/onboarding" element={<OnboardingPage />} />
+                    <Route
+                        path="/onboarding/extension"
+                        element={<OnboardingExtensionPage />}
+                    />
+                    <Route
+                        path="/onboarding/proxy"
+                        element={<OnboardingProxyPage />}
+                    />
+                    {shouldHaveDmcaPage() ? (
+                        <Route path="/dmca" element={<DmcaPage />} />
+                    ) : null}
+                    {/* Support page */}
+                    <Route path="/support" element={<SupportPage />} />
+                    {/* Discover page */}
+                    <Route path="/discover" element={<Discover />} />
+                    {/* Settings page */}
+                    <Route
+                        path="/settings"
+                        element={
+                            <Suspense fallback={null}>
+                                <SettingsPage />
+                            </Suspense>
+                        }
+                    />
+                    {/* admin routes */}
+                    <Route path="/admin" element={<AdminPage />} />
+                    {/* other */}
+                    <Route path="/dev" element={<DeveloperPage />} />
+                    <Route path="/dev/video" element={<VideoTesterView />} />
+                    {/* developer routes that can abuse workers are disabled in production */}
+                    {process.env.NODE_ENV === "development" ? (
+                        <Route path="/dev/test" element={<TestView />} />
+                    ) : null}
+                    <Route path="*" element={<NotFoundPage />} />
+                </Routes>
+            )}
+            {showDowntime && (
+                <MaintenancePage onHomeButtonClick={handleButtonClick} />
+            )}
+        </Layout>
+    );
 }
 
 export default App;

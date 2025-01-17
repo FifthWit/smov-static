@@ -3,22 +3,22 @@ import { useTranslation } from "react-i18next";
 import { usePlayerStore } from "@/stores/player/store";
 
 export function EpisodeTitle() {
-  const { t } = useTranslation();
-  const meta = usePlayerStore((s) => s.meta);
+    const { t } = useTranslation();
+    const meta = usePlayerStore((s) => s.meta);
 
-  if (meta?.type !== "show") return null;
+    if (meta?.type !== "show") return null;
 
-  return (
-    <div className="flex gap-3">
-      <span className="text-foreground font-medium">
-        {t("media.episodeDisplay", {
-          season: meta?.season?.number,
-          episode: meta?.episode?.number,
-        })}
-      </span>
-      <span className="text-muted-foreground font-medium">
-        {meta?.episode?.title}
-      </span>
-    </div>
-  );
+    return (
+        <div className="flex gap-3">
+            <span className="text-foreground font-medium">
+                {t("media.episodeDisplay", {
+                    season: meta?.season?.number,
+                    episode: meta?.episode?.number,
+                })}
+            </span>
+            <span className="text-muted-foreground font-medium">
+                {meta?.episode?.title}
+            </span>
+        </div>
+    );
 }

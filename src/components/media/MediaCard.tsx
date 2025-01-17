@@ -16,211 +16,224 @@ import { Icons } from "../Icon";
 import { cn } from "@/lib/utils";
 
 export interface MediaCardProps {
-  media: MediaItem;
-  linkable?: boolean;
-  series?: {
-    episode: number;
-    season?: number;
-    episodeId: string;
-    seasonId: string;
-  };
-  percentage?: number;
-  closable?: boolean;
-  onClose?: () => void;
+    media: MediaItem;
+    linkable?: boolean;
+    series?: {
+        episode: number;
+        season?: number;
+        episodeId: string;
+        seasonId: string;
+    };
+    percentage?: number;
+    closable?: boolean;
+    onClose?: () => void;
 }
 
 function checkReleased(media: MediaItem): boolean {
-  const isReleasedYear = Boolean(
-    media.year && media.year <= new Date().getFullYear(),
-  );
-  const isReleasedDate = Boolean(
-    media.release_date && media.release_date <= new Date(),
-  );
+    const isReleasedYear = Boolean(
+        media.year && media.year <= new Date().getFullYear(),
+    );
+    const isReleasedDate = Boolean(
+        media.release_date && media.release_date <= new Date(),
+    );
 
-  // If the media has a release date, use that, otherwise use the year
-  const isReleased = media.release_date ? isReleasedDate : isReleasedYear;
+    // If the media has a release date, use that, otherwise use the year
+    const isReleased = media.release_date ? isReleasedDate : isReleasedYear;
 
-  return isReleased;
+    return isReleased;
 }
 
 function MediaCardContent({
-  media,
-  linkable,
-  series,
-  percentage,
-  closable,
-  onClose,
+    media,
+    linkable,
+    series,
+    percentage,
+    closable,
+    onClose,
 }: MediaCardProps) {
-  const { t } = useTranslation();
-  const percentageString = `${Math.round(percentage ?? 0).toFixed(0)}%`;
+    const { t } = useTranslation();
+    const percentageString = `${Math.round(percentage ?? 0).toFixed(0)}%`;
 
-  const isReleased = useCallback(() => checkReleased(media), [media]);
+    const isReleased = useCallback(() => checkReleased(media), [media]);
 
-  const canLink = linkable && !closable && isReleased();
+    const canLink = linkable && !closable && isReleased();
 
-  const dotListContent = [t(`media.types.${media.type}`)];
+    const dotListContent = [t(`media.types.${media.type}`)];
 
-  const [searchQuery] = useSearchQuery();
+    const [searchQuery] = useSearchQuery();
 
-  const { isMobile } = useIsMobile();
+    const { isMobile } = useIsMobile();
 
-  if (media.year) {
-    dotListContent.push(media.year.toFixed());
-  }
+    if (media.year) {
+        dotListContent.push(media.year.toFixed());
+    }
 
-  if (!isReleased()) {
-    dotListContent.push(t("media.unreleased"));
-  }
+    if (!isReleased()) {
+        dotListContent.push(t("media.unreleased"));
+    }
 
-  return (
-    <Flare.Base
-      className={cn(
-        `group -m-[0.705em] rounded-xl transition-colors duration-300 focus:relative focus:z-10 bg-opacity-0`,
-      )}
-      tabIndex={canLink ? 0 : -1}
-      onKeyUp={(e) => e.key === "Enter" && e.currentTarget.click()}
-    >
-      <Flare.Light
-        flareSize={300}
-        cssColorVar="--secondary"
-        backgroundClass="duration-100"
-        peakOpacity={0.2}
-        className={classNames({
-          "rounded-xl group-hover:opacity-100": canLink,
-        })}
-      />
-      <Flare.Child
-        className={`pointer-events-auto relative mb-2 p-[0.4em] transition-transform duration-300 ${
-          canLink ? "group-hover:scale-95" : "opacity-90"
-        }`}
-      >
-        <div
-          className={classNames(
-            "relative mb-4 pb-[150%] w-full overflow-hidden rounded-xl bg-mediaCard-hoverBackground bg-cover bg-center transition-[border-radius] duration-300",
-            {
-              "group-hover:rounded-lg": canLink,
-            },
-          )}
-          style={{
-            backgroundImage: media.poster ? `url(${media.poster})` : undefined,
-          }}
+    return (
+        <Flare.Base
+            className={cn(
+                `group -m-[0.705em] rounded-xl transition-colors duration-300 focus:relative focus:z-10 bg-opacity-0`,
+            )}
+            tabIndex={canLink ? 0 : -1}
+            onKeyUp={(e) => e.key === "Enter" && e.currentTarget.click()}
         >
-          {series ? (
-            <div
-              className={[
-                "absolute right-2 top-2 rounded-md bg-background/95 text-muted-foreground px-2 py-1 transition-colors",
-              ].join(" ")}
-            >
-              <p
-                className={[
-                  "text-center text-xs font-bold text-muted-foreground transition-colors",
-                  closable ? "" : "group-hover:text-foreground",
-                ].join(" ")}
-              >
-                {t("media.episodeDisplay", {
-                  season: series.season || 1,
-                  episode: series.episode,
+            <Flare.Light
+                flareSize={300}
+                cssColorVar="--secondary"
+                backgroundClass="duration-100"
+                peakOpacity={0.2}
+                className={classNames({
+                    "rounded-xl group-hover:opacity-100": canLink,
                 })}
-              </p>
-            </div>
-          ) : null}
-
-          {percentage !== undefined ? (
-            <>
-              <div
-                className={`absolute inset-x-0 -bottom-px pb-1 h-12 bg-gradient-to-t from-mediaCard-shadow to-transparent transition-colors ${
-                  canLink ? "group-hover:from-mediaCard-hoverShadow" : ""
-                }`}
-              />
-              <div
-                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/70 to-transparent transition-colors ${
-                  canLink ? "group-hover:from-background/70" : ""
-                }`}
-              />
-              <div className="absolute inset-x-0 bottom-0 p-3">
-                <div className="relative h-1 overflow-hidden rounded-full bg-primary/25">
-                  <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-primary"
-                    style={{
-                      width: percentageString,
-                    }}
-                  />
-                </div>
-              </div>
-            </>
-          ) : null}
-
-          <div
-            className={classNames("absolute", {
-              "bookmark-button": !isMobile,
-            })}
-            onClick={(e) => e.preventDefault()}
-          >
-            <MediaBookmarkButton media={media} />
-          </div>
-
-          {searchQuery.length > 0 ? (
-            <div className="absolute" onClick={(e) => e.preventDefault()}>
-              <MediaBookmarkButton media={media} />
-            </div>
-          ) : null}
-
-          <div
-            className={`absolute inset-0 flex items-center justify-center bg-mediaCard-badge bg-opacity-80 transition-opacity duration-500 ${
-              closable ? "opacity-100" : "pointer-events-none opacity-0"
-            }`}
-          >
-            <IconPatch
-              clickable
-              className="text-2xl text-mediaCard-badgeText transition-transform hover:scale-110 duration-500"
-              onClick={() => closable && onClose?.()}
-              icon={Icons.X}
             />
-          </div>
-        </div>
-        <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-foreground">
-          <span>{media.title}</span>
-        </h1>
-        <DotList className="text-xs" content={dotListContent} />
-      </Flare.Child>
-    </Flare.Base>
-  );
+            <Flare.Child
+                className={`pointer-events-auto relative mb-2 p-[0.4em] transition-transform duration-300 ${
+                    canLink ? "group-hover:scale-95" : "opacity-90"
+                }`}
+            >
+                <div
+                    className={classNames(
+                        "relative mb-4 pb-[150%] w-full overflow-hidden rounded-xl bg-mediaCard-hoverBackground bg-cover bg-center transition-[border-radius] duration-300",
+                        {
+                            "group-hover:rounded-lg": canLink,
+                        },
+                    )}
+                    style={{
+                        backgroundImage: media.poster
+                            ? `url(${media.poster})`
+                            : undefined,
+                    }}
+                >
+                    {series ? (
+                        <div
+                            className={[
+                                "absolute right-2 top-2 rounded-md bg-background/95 text-muted-foreground px-2 py-1 transition-colors",
+                            ].join(" ")}
+                        >
+                            <p
+                                className={[
+                                    "text-center text-xs font-bold text-muted-foreground transition-colors",
+                                    closable
+                                        ? ""
+                                        : "group-hover:text-foreground",
+                                ].join(" ")}
+                            >
+                                {t("media.episodeDisplay", {
+                                    season: series.season || 1,
+                                    episode: series.episode,
+                                })}
+                            </p>
+                        </div>
+                    ) : null}
+
+                    {percentage !== undefined ? (
+                        <>
+                            <div
+                                className={`absolute inset-x-0 -bottom-px pb-1 h-12 bg-gradient-to-t from-mediaCard-shadow to-transparent transition-colors ${
+                                    canLink
+                                        ? "group-hover:from-mediaCard-hoverShadow"
+                                        : ""
+                                }`}
+                            />
+                            <div
+                                className={`absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-background/70 to-transparent transition-colors ${
+                                    canLink
+                                        ? "group-hover:from-background/70"
+                                        : ""
+                                }`}
+                            />
+                            <div className="absolute inset-x-0 bottom-0 p-3">
+                                <div className="relative h-1 overflow-hidden rounded-full bg-primary/25">
+                                    <div
+                                        className="absolute inset-y-0 left-0 rounded-full bg-primary"
+                                        style={{
+                                            width: percentageString,
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        </>
+                    ) : null}
+
+                    <div
+                        className={classNames("absolute", {
+                            "bookmark-button": !isMobile,
+                        })}
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        <MediaBookmarkButton media={media} />
+                    </div>
+
+                    {searchQuery.length > 0 ? (
+                        <div
+                            className="absolute"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <MediaBookmarkButton media={media} />
+                        </div>
+                    ) : null}
+
+                    <div
+                        className={`absolute inset-0 flex items-center justify-center bg-mediaCard-badge bg-opacity-80 transition-opacity duration-500 ${
+                            closable
+                                ? "opacity-100"
+                                : "pointer-events-none opacity-0"
+                        }`}
+                    >
+                        <IconPatch
+                            clickable
+                            className="text-2xl text-mediaCard-badgeText transition-transform hover:scale-110 duration-500"
+                            onClick={() => closable && onClose?.()}
+                            icon={Icons.X}
+                        />
+                    </div>
+                </div>
+                <h1 className="mb-1 line-clamp-3 max-h-[4.5rem] text-ellipsis break-words font-bold text-foreground">
+                    <span>{media.title}</span>
+                </h1>
+                <DotList className="text-xs" content={dotListContent} />
+            </Flare.Child>
+        </Flare.Base>
+    );
 }
 
 export function MediaCard(props: MediaCardProps) {
-  const content = <MediaCardContent {...props} />;
+    const content = <MediaCardContent {...props} />;
 
-  const isReleased = useCallback(
-    () => checkReleased(props.media),
-    [props.media],
-  );
+    const isReleased = useCallback(
+        () => checkReleased(props.media),
+        [props.media],
+    );
 
-  const canLink = props.linkable && !props.closable && isReleased();
+    const canLink = props.linkable && !props.closable && isReleased();
 
-  let link = canLink
-    ? `/media/${encodeURIComponent(mediaItemToId(props.media))}`
-    : "#";
-  if (canLink && props.series) {
-    if (props.series.season === 0 && !props.series.episodeId) {
-      link += `/${encodeURIComponent(props.series.seasonId)}`;
-    } else {
-      link += `/${encodeURIComponent(
-        props.series.seasonId,
-      )}/${encodeURIComponent(props.series.episodeId)}`;
+    let link = canLink
+        ? `/media/${encodeURIComponent(mediaItemToId(props.media))}`
+        : "#";
+    if (canLink && props.series) {
+        if (props.series.season === 0 && !props.series.episodeId) {
+            link += `/${encodeURIComponent(props.series.seasonId)}`;
+        } else {
+            link += `/${encodeURIComponent(
+                props.series.seasonId,
+            )}/${encodeURIComponent(props.series.episodeId)}`;
+        }
     }
-  }
 
-  if (!canLink) return <span>{content}</span>;
-  return (
-    <Link
-      to={link}
-      tabIndex={-1}
-      className={classNames(
-        "tabbable",
-        props.closable ? "hover:cursor-default" : "",
-      )}
-    >
-      {content}
-    </Link>
-  );
+    if (!canLink) return <span>{content}</span>;
+    return (
+        <Link
+            to={link}
+            tabIndex={-1}
+            className={classNames(
+                "tabbable",
+                props.closable ? "hover:cursor-default" : "",
+            )}
+        >
+            {content}
+        </Link>
+    );
 }

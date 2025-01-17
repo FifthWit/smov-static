@@ -6,32 +6,32 @@ import { useVolumeStore } from "@/stores/volume";
 import { useCaptions } from "./useCaptions";
 
 export function useInitializePlayer() {
-  const display = usePlayerStore((s) => s.display);
-  const volume = useVolumeStore((s) => s.volume);
+    const display = usePlayerStore((s) => s.display);
+    const volume = useVolumeStore((s) => s.volume);
 
-  const init = useCallback(() => {
-    display?.setVolume(volume);
-  }, [display, volume]);
+    const init = useCallback(() => {
+        display?.setVolume(volume);
+    }, [display, volume]);
 
-  return {
-    init,
-  };
+    return {
+        init,
+    };
 }
 
 export function useInitializeSource() {
-  const source = usePlayerStore((s) => s.source);
-  const sourceIdentifier = useMemo(
-    () => (source ? JSON.stringify(source) : null),
-    [source],
-  );
-  const { selectLastUsedLanguageIfEnabled } = useCaptions();
+    const source = usePlayerStore((s) => s.source);
+    const sourceIdentifier = useMemo(
+        () => (source ? JSON.stringify(source) : null),
+        [source],
+    );
+    const { selectLastUsedLanguageIfEnabled } = useCaptions();
 
-  const funRef = useRef(selectLastUsedLanguageIfEnabled);
-  useEffect(() => {
-    funRef.current = selectLastUsedLanguageIfEnabled;
-  }, [selectLastUsedLanguageIfEnabled]);
+    const funRef = useRef(selectLastUsedLanguageIfEnabled);
+    useEffect(() => {
+        funRef.current = selectLastUsedLanguageIfEnabled;
+    }, [selectLastUsedLanguageIfEnabled]);
 
-  useEffect(() => {
-    if (sourceIdentifier) funRef.current();
-  }, [sourceIdentifier]);
+    useEffect(() => {
+        if (sourceIdentifier) funRef.current();
+    }, [sourceIdentifier]);
 }

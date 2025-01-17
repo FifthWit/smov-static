@@ -8,21 +8,21 @@ import { WorkerTestPart } from "@/pages/parts/admin/WorkerTestPart";
 import { BackendTestPart } from "../parts/admin/BackendTestPart";
 
 export function AdminPage() {
-  return (
-    <SubPageLayout>
-      <ThinContainer>
-        <Heading1>Admin tools</Heading1>
-        <p className="text-muted-foreground">
-          Silly tools used test sudo-flix! ૮₍´˶• . • ⑅ ₎ა
-        </p>
+    return (
+        <SubPageLayout>
+            <ThinContainer>
+                <Heading1>Admin tools</Heading1>
+                <p className="text-muted-foreground">
+                    Silly tools used test sudo-flix! ૮₍´˶• . • ⑅ ₎ა
+                </p>
 
-        <div className="flex flex-col gap-4">
-          <ConfigValuesPart />
-          <BackendTestPart />
-          <WorkerTestPart />
-          <TMDBTestPart />
-        </div>
-      </ThinContainer>
-    </SubPageLayout>
-  );
+                <div className="flex flex-col gap-4">
+                    <ConfigValuesPart />
+                    <BackendTestPart />
+                    <WorkerTestPart />
+                    <TMDBTestPart />
+                </div>
+            </ThinContainer>
+        </SubPageLayout>
+    );
 }

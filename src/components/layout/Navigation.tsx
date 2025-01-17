@@ -12,81 +12,89 @@ import { conf } from "@/setup/config";
 import { useBannerSize } from "@/stores/banner";
 
 export interface NavigationProps {
-  bg?: boolean;
-  noLightbar?: boolean;
-  doBackground?: boolean;
+    bg?: boolean;
+    noLightbar?: boolean;
+    doBackground?: boolean;
 }
 
 export function Navigation(props: NavigationProps) {
-  const bannerHeight = useBannerSize();
-  const navigate = useNavigate();
-  const { loggedIn } = useAuth();
+    const bannerHeight = useBannerSize();
+    const navigate = useNavigate();
+    const { loggedIn } = useAuth();
 
-  const handleClick = (path: To) => {
-    window.scrollTo(0, 0);
-    navigate(path);
-  };
+    const handleClick = (path: To) => {
+        window.scrollTo(0, 0);
+        navigate(path);
+    };
 
-  return (
-    <>
-      {/* lightbar */}
-      {!props.noLightbar ? (
-        <div
-          className="absolute inset-x-0 top-0 flex h-[88px] items-center justify-center"
-          style={{
-            top: `${bannerHeight}px`,
-          }}
-        ></div>
-      ) : null}
+    return (
+        <>
+            {/* lightbar */}
+            {!props.noLightbar ? (
+                <div
+                    className="absolute inset-x-0 top-0 flex h-[88px] items-center justify-center"
+                    style={{
+                        top: `${bannerHeight}px`,
+                    }}
+                ></div>
+            ) : null}
 
-      {/* backgrounds - these are seperate because of z-index issues */}
-      <div
-        className="fixed z-5 pointer-events-none left-0 right-0 top-0 min-h-[150px]"
-        style={{
-          top: `${bannerHeight}px`,
-        }}
-      >
-        <div
-          className={classNames(
-            "fixed left-0 right-0 h-20 flex items-center",
-            props.doBackground
-              ? "bg-background-main border-b border-utils-divider border-opacity-50"
-              : null,
-          )}
-        >
-          {props.doBackground ? (
-            <div className="absolute w-full h-full inset-0 overflow-hidden">
-              <BlurEllipsis positionClass="absolute" />
+            {/* backgrounds - these are seperate because of z-index issues */}
+            <div
+                className="fixed z-5 pointer-events-none left-0 right-0 top-0 min-h-[150px]"
+                style={{
+                    top: `${bannerHeight}px`,
+                }}
+            >
+                <div
+                    className={classNames(
+                        "fixed left-0 right-0 h-20 flex items-center",
+                        props.doBackground
+                            ? "bg-background-main border-b border-utils-divider border-opacity-50"
+                            : null,
+                    )}
+                >
+                    {props.doBackground ? (
+                        <div className="absolute w-full h-full inset-0 overflow-hidden">
+                            <BlurEllipsis positionClass="absolute" />
+                        </div>
+                    ) : null}
+                    <div className="opacity-0 absolute inset-0 block h-20 pointer-events-auto" />
+                    <div
+                        className={`${
+                            props.bg ? "opacity-100" : "opacity-0"
+                        } absolute inset-0 block h-24 bg-background-main transition-opacity duration-300`}
+                    >
+                        <div className="absolute -bottom-24 h-24 w-full bg-gradient-to-b from-background-main to-transparent" />
+                    </div>
+                </div>
             </div>
-          ) : null}
-          <div className="opacity-0 absolute inset-0 block h-20 pointer-events-auto" />
-          <div
-            className={`${
-              props.bg ? "opacity-100" : "opacity-0"
-            } absolute inset-0 block h-24 bg-background-main transition-opacity duration-300`}
-          >
-            <div className="absolute -bottom-24 h-24 w-full bg-gradient-to-b from-background-main to-transparent" />
-          </div>
-        </div>
-      </div>
 
-      {/* content */}
-      <div
-        className="fixed pointer-events-none left-0 right-0 z-[5] top-0 min-h-[150px]"
-        style={{
-          top: `${bannerHeight}px`,
-        }}
-      >
-        <div className={classNames("fixed left-0 right-0 flex items-center")}>
-          <div className="px-7 py-5 relative z-[60] flex flex-1 items-center justify-end">
-            <div className="relative pointer-events-auto">
-              <LinksDropdown>
-                {loggedIn ? <UserAvatar withName /> : <NoUserAvatar />}
-              </LinksDropdown>
+            {/* content */}
+            <div
+                className="fixed pointer-events-none left-0 right-0 z-[5] top-0 min-h-[150px]"
+                style={{
+                    top: `${bannerHeight}px`,
+                }}
+            >
+                <div
+                    className={classNames(
+                        "fixed left-0 right-0 flex items-center",
+                    )}
+                >
+                    <div className="px-7 py-5 relative z-[60] flex flex-1 items-center justify-end">
+                        <div className="relative pointer-events-auto">
+                            <LinksDropdown>
+                                {loggedIn ? (
+                                    <UserAvatar withName />
+                                ) : (
+                                    <NoUserAvatar />
+                                )}
+                            </LinksDropdown>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+        </>
+    );
 }

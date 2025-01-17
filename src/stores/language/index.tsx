@@ -8,47 +8,47 @@ import i18n from "@/setup/i18n";
 import { getLocaleInfo } from "@/utils/language";
 
 export interface LanguageStore {
-  language: string;
-  setLanguage(v: string): void;
+    language: string;
+    setLanguage(v: string): void;
 }
 
 export const useLanguageStore = create(
-  persist(
-    immer<LanguageStore>((set) => ({
-      language: navigator.language.split("-")[0],
-      setLanguage(v) {
-        set((s) => {
-          s.language = v;
-        });
-      },
-    })),
-    { name: "__MW::locale" },
-  ),
+    persist(
+        immer<LanguageStore>((set) => ({
+            language: navigator.language.split("-")[0],
+            setLanguage(v) {
+                set((s) => {
+                    s.language = v;
+                });
+            },
+        })),
+        { name: "__MW::locale" },
+    ),
 );
 
 export function changeAppLanguage(language: string) {
-  const lang = getLocaleInfo(language);
-  if (lang) i18n.changeLanguage(lang.code);
+    const lang = getLocaleInfo(language);
+    if (lang) i18n.changeLanguage(lang.code);
 }
 
 export function isRightToLeft(language: string) {
-  const lang = getLocaleInfo(language);
-  if (!lang) return false;
-  return lang.isRtl;
+    const lang = getLocaleInfo(language);
+    if (!lang) return false;
+    return lang.isRtl;
 }
 
 export function LanguageProvider() {
-  const language = useLanguageStore((s) => s.language);
+    const language = useLanguageStore((s) => s.language);
 
-  useEffect(() => {
-    changeAppLanguage(language);
-  }, [language]);
+    useEffect(() => {
+        changeAppLanguage(language);
+    }, [language]);
 
-  const isRtl = isRightToLeft(language);
+    const isRtl = isRightToLeft(language);
 
-  return (
-    <Helmet>
-      <html dir={isRtl ? "rtl" : "ltr"} />
-    </Helmet>
-  );
+    return (
+        <Helmet>
+            <html dir={isRtl ? "rtl" : "ltr"} />
+        </Helmet>
+    );
 }

@@ -11,13 +11,13 @@ import { createThumbnailSlice } from "@/stores/player/slices/thumbnails";
 import { AllSlices } from "@/stores/player/slices/types";
 
 export const usePlayerStore = create(
-  immer<AllSlices>((...a) => ({
-    ...createInterfaceSlice(...a),
-    ...createProgressSlice(...a),
-    ...createPlayingSlice(...a),
-    ...createSourceSlice(...a),
-    ...createDisplaySlice(...a),
-    ...createCastingSlice(...a),
-    ...createThumbnailSlice(...a),
-  })),
+    immer<AllSlices>((...a) => ({
+        ...createInterfaceSlice(...a),
+        ...createProgressSlice(...a),
+        ...createPlayingSlice(...a),
+        ...createSourceSlice(...a),
+        ...createDisplaySlice(...a),
+        ...createCastingSlice(...a),
+        ...createThumbnailSlice(...a),
+    })),
 );

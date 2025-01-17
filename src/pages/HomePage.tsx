@@ -16,81 +16,83 @@ import { SearchListPart } from "@/pages/parts/search/SearchListPart";
 import { SearchLoadingPart } from "@/pages/parts/search/SearchLoadingPart";
 
 function useSearch(search: string) {
-  const [searching, setSearching] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(false);
+    const [searching, setSearching] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
-  const debouncedSearch = useDebounce<string>(search, 500);
-  useEffect(() => {
-    setSearching(search !== "");
-    setLoading(search !== "");
-  }, [search]);
-  useEffect(() => {
-    setLoading(false);
-  }, [debouncedSearch]);
+    const debouncedSearch = useDebounce<string>(search, 500);
+    useEffect(() => {
+        setSearching(search !== "");
+        setLoading(search !== "");
+    }, [search]);
+    useEffect(() => {
+        setLoading(false);
+    }, [debouncedSearch]);
 
-  return {
-    loading,
-    searching,
-  };
+    return {
+        loading,
+        searching,
+    };
 }
 
 // What the sigma?
 
 export function HomePage() {
-  const { t } = useTranslation();
-  const { t: randomT } = useRandomTranslation();
-  const emptyText = randomT(`home.search.empty`);
-  const navigate = useNavigate();
-  const [showBg, setShowBg] = useState<boolean>(false);
-  const searchParams = useSearchQuery();
-  const [search] = searchParams;
-  const s = useSearch(search);
-  const [showBookmarks, setShowBookmarks] = useState(false);
-  const [showWatching, setShowWatching] = useState(false);
+    const { t } = useTranslation();
+    const { t: randomT } = useRandomTranslation();
+    const emptyText = randomT(`home.search.empty`);
+    const navigate = useNavigate();
+    const [showBg, setShowBg] = useState<boolean>(false);
+    const searchParams = useSearchQuery();
+    const [search] = searchParams;
+    const s = useSearch(search);
+    const [showBookmarks, setShowBookmarks] = useState(false);
+    const [showWatching, setShowWatching] = useState(false);
 
-  const handleClick = (path: To) => {
-    window.scrollTo(0, 0);
-    navigate(path);
-  };
+    const handleClick = (path: To) => {
+        window.scrollTo(0, 0);
+        navigate(path);
+    };
 
-  return (
-    <HomeLayout showBg={showBg}>
-      <div className="mb-16 sm:mb-24">
-        <Helmet>
-          <style type="text/css">{`
+    return (
+        <HomeLayout showBg={showBg}>
+            <div className="mb-16 sm:mb-24">
+                <Helmet>
+                    <style type="text/css">{`
             html, body {
               scrollbar-gutter: stable;
             }
           `}</style>
-          <title>{t("global.name")}</title>
-        </Helmet>
-        <HeroPart searchParams={searchParams} setIsSticky={setShowBg} />
-      </div>
-      <WideContainer>
-        {s.loading ? (
-          <SearchLoadingPart />
-        ) : s.searching ? (
-          <SearchListPart searchQuery={search} />
-        ) : (
-          <>
-            <div className="flex flex-col gap-8">
-              <BookmarksPart onItemsChange={setShowBookmarks} />
-              <WatchingPart onItemsChange={setShowWatching} />
+                    <title>{t("global.name")}</title>
+                </Helmet>
+                <HeroPart searchParams={searchParams} setIsSticky={setShowBg} />
             </div>
-            {!(showBookmarks || showWatching) ? (
-              <div className="flex flex-col items-center justify-center">
-                <p className="text-[18.5px] pb-3">{emptyText}</p>
-                <Button
-                  className="px-py p-[0.35em] mt-3 rounded-xl box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
-                  onClick={() => handleClick("/discover")}
-                >
-                  {t("home.search.discover")}
-                </Button>
-              </div>
-            ) : null}
-          </>
-        )}
-      </WideContainer>
-    </HomeLayout>
-  );
+            <WideContainer>
+                {s.loading ? (
+                    <SearchLoadingPart />
+                ) : s.searching ? (
+                    <SearchListPart searchQuery={search} />
+                ) : (
+                    <>
+                        <div className="flex flex-col gap-8">
+                            <BookmarksPart onItemsChange={setShowBookmarks} />
+                            <WatchingPart onItemsChange={setShowWatching} />
+                        </div>
+                        {!(showBookmarks || showWatching) ? (
+                            <div className="flex flex-col items-center justify-center">
+                                <p className="text-[18.5px] pb-3">
+                                    {emptyText}
+                                </p>
+                                <Button
+                                    className="px-py p-[0.35em] mt-3 rounded-xl box-content text-[18px] bg-largeCard-background text-buttons-secondaryText justify-center items-center"
+                                    onClick={() => handleClick("/discover")}
+                                >
+                                    {t("home.search.discover")}
+                                </Button>
+                            </div>
+                        ) : null}
+                    </>
+                )}
+            </WideContainer>
+        </HomeLayout>
+    );
 }

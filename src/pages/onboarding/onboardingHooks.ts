@@ -5,33 +5,33 @@ import { useQueryParam } from "@/hooks/useQueryParams";
 import { useOnboardingStore } from "@/stores/onboarding";
 
 export function useRedirectBack() {
-  const [url] = useQueryParam("redirect");
-  const navigate = useNavigate();
-  const setCompleted = useOnboardingStore((s) => s.setCompleted);
+    const [url] = useQueryParam("redirect");
+    const navigate = useNavigate();
+    const setCompleted = useOnboardingStore((s) => s.setCompleted);
 
-  const redirectBack = useCallback(() => {
-    navigate(url ?? "/");
-  }, [navigate, url]);
+    const redirectBack = useCallback(() => {
+        navigate(url ?? "/");
+    }, [navigate, url]);
 
-  const completeAndRedirect = useCallback(() => {
-    setCompleted(true);
-    redirectBack();
-  }, [redirectBack, setCompleted]);
+    const completeAndRedirect = useCallback(() => {
+        setCompleted(true);
+        redirectBack();
+    }, [redirectBack, setCompleted]);
 
-  return { completeAndRedirect };
+    return { completeAndRedirect };
 }
 
 export function useNavigateOnboarding() {
-  const navigate = useNavigate();
-  const loc = useLocation();
-  const nav = useCallback(
-    (path: string) => {
-      navigate({
-        pathname: path,
-        search: loc.search,
-      });
-    },
-    [navigate, loc],
-  );
-  return nav;
+    const navigate = useNavigate();
+    const loc = useLocation();
+    const nav = useCallback(
+        (path: string) => {
+            navigate({
+                pathname: path,
+                search: loc.search,
+            });
+        },
+        [navigate, loc],
+    );
+    return nav;
 }
